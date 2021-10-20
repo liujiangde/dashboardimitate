@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖、节流的demo</title>
+</head>
+<body>
+  <div>
+    <button id="hahah" style="height: 100px; width: 100px;" >dianji</button>
+  </div>
+  <script>
+     function submit(e) {
+      console.log('1');
+    }
+    var hah =  document.getElementById('hahah')
+    hah.addEventListener("click",debounce(submit, 1000), false)
+
+    // 防抖
+    // function debounce(fn,flagNow) {
+    //   var t = null;
+    //   return function () {
+    //     if (t) {
+    //       console.log("2");
+    //       clearTimeout(t)
+    //     }
+    //     if (flagNow) {
+    //       var firstClick =  !t
+    //       if (firstClick) {
+    //         console.log("4");
+    //         fn.apply(this,arguments)
+    //       }
+    //       t = setTimeout(() => {
+    //         t = null
+    //       }, 1000);
+    //     } else {
+    //       t = setTimeout(() => {
+    //         console.log("5");
+    //         fn.apply(this,arguments)
+    //       }, 1000);
+    //     }
+    //   }
+    // }
+    // 思路：在第一次点击的时候，立马执行， 然后给t 赋值为一个定时器，让t指定时间之后自动销毁
+    // 当t在自动销毁之前这个时间段，
+
+    function debounce(fn) {
+      var t = null;
+      return function () {
+        var firstClick =  !t
+        if (t) {
+          console.log("4");
+          clearTimeout(t)
+        }
+
+        if (firstClick) {
+          console.log("3",t);
+          fn.apply(this,arguments)
+        }
+        t = setTimeout(() => {
+          console.log("2",t);
+          t = null
+        }, 1000);
+      }
+    }
+
+    function throttle(fn, delay) {
+        var begin = 0;
+        return function (params) {
+            var cur = new Date().getTime()
+            if (cur - begin > delay) {
+              fn.apply(this,arguments)
+              begin = cur
+            }
+        }
+    }
+
+  </script>
+</body>
+</html>
