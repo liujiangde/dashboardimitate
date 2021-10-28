@@ -38,10 +38,7 @@ const change = () => {
     return count
 
 }
-
 </script>
-
-
 
 <style scoped>
 a {
