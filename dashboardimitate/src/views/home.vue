@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>idiiiiii</div>
     <div class="heading">
       <h1 class="title">Dashboard</h1>
     </div>
@@ -13,11 +12,6 @@
 
 <script lang="ts" >
   console.log('iiiiii');
-
-  export default {
-    name: 'home'
-  }
-
 </script>
 
 

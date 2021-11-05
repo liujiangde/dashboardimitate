@@ -1,30 +1,28 @@
 <template>
-  <section class="layout">
-    <navbar/>
-    <section class="container">
-      <sidebar/>
-      <main class="content">
-        <transition name="content">
-          <router-view class="inner"/>
-        </transition>
-      </main>
-    </section>
-  </section>
+  <n-space vertical size="large">
+    <n-layout has-sider>
+      <n-layout-sider content-style="padding: 24px;">
+        <Sidebar/>
+      </n-layout-sider>
+      <n-layout>
+        <Header/>
+        <n-layout-content content-style="padding: 24px;">平山道</n-layout-content>
+      </n-layout>
+    </n-layout>
+  </n-space>
+
 </template>
 
-<script lang="ts">
-import Navbar from '../components/navbar.vue'
-import Sidebar from '../components/sidebar.vue'
 
-export default {
-  name: 'layout',
-  components: { Navbar, Sidebar }
-}
+
+
+<script lang="ts" setup>
+  import Sidebar from "./sidebar.vue";
+  import Header from "./header.vue";
 </script>
 
 <style lang="scss">
 @import '../theme';
-
 .container {
   display: flex;
   flex: 1;

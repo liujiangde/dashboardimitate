@@ -1,9 +1,7 @@
 
 import login from '../views/login.vue'
 import error from '../views/error.vue'
-// business routes
 import mainRoutes from './main-routes'
-// demo routes
 import demoRoutes from './demo-routes'
 
 
@@ -16,7 +14,7 @@ export default [
   },
   {
     path: '/',
-    component: () => import(/* webpackChunkName: 'common' */ '../views/layout.vue'),
+    component: () => import(/* webpackChunkName: 'common' */ '../layout/index.vue'),
     children: mainRoutes.concat(demoRoutes)
   },
   {

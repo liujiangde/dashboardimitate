@@ -6,4 +6,9 @@ const router = createRouter({
     routes
 })
 
+router.beforeEach(()=>{
+    const { espire = 0 } = stotage
+})
+
+
 export default router
