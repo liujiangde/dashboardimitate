@@ -1,25 +1,21 @@
 <template>
-  <div>
-    <n-layout-sider
-          bordered
-          show-trigger="bar"
-          collapse-mode="width"
+   <n-layout-sider
+        :collapsed-width="120"
+        :width="240"
+        show-trigger="bar"
+        content-style="padding: 24px;"
+        bordered
+        collapse-mode="width"
+        :native-scrollbar="false"
+      >
+      <n-menu
           :collapsed-width="64"
-          :width="240"
-          :native-scrollbar="false"
-          :inverted="inverted"
-          style="min-height: 320px;"
-        >
-          <n-menu
-            :inverted="inverted"
-            :collapsed-width="64"
-            :collapsed-icon-size="22"
-            :options="menuOptions"
-          />
-    </n-layout-sider>
-  </div>
+          :collapsed-icon-size="22"
+          :options="menuOptions"
+        />
+      </n-layout-sider>
 </template>
-<script lang="ts" setup>
+<script lang= "ts"  setup >
 import { h,ref } from 'vue'
 import { NIcon } from 'naive-ui'
 import {
@@ -31,7 +27,8 @@ import {
 function renderIcon (icon) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
-const inverted = ref(false)
+const inverted = ref(false);
+const collapsed= ref(false);
 
 const menuOptions = [
   {

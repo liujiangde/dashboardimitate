@@ -1,134 +1,111 @@
 <template>
   <n-space vertical size="large">
     <n-layout has-sider>
-      <n-layout-sider content-style="padding: 24px;">
-        <Sidebar/>
-      </n-layout-sider>
-      <n-layout>
-        <Header/>
-        <n-layout-content content-style="padding: 24px;">平山道</n-layout-content>
-      </n-layout>
+      <Sidebar />
+      <n-layout-content content-style="padding: 10px 20px 10px 20px;">
+        <Header />
+        <Content />
+        <Footer />
+      </n-layout-content>
     </n-layout>
   </n-space>
-
 </template>
 
 
 
 
 <script lang="ts" setup>
-  import Sidebar from "./sidebar.vue";
   import Header from "./header.vue";
+  import Footer from "./footer.vue";
+  import Content from "./content.vue";
+  import Sidebar from "./sidebar.vue";
+  import { h,ref } from 'vue'
+  import { NIcon } from 'naive-ui'
+  import {
+  BookOutline as BookIcon,
+  PersonOutline as PersonIcon,
+  WineOutline as WineIcon
+} from '@vicons/ionicons5'
+
+  function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+
+const menuOptions = [
+  {
+    label: '没意义的选项1',
+    key: 'hear-the-wind-sing',
+    icon: renderIcon(BookIcon)
+  },
+  {
+    label: '没意义的选项2',
+    key: 'pinball-1973',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        label: '选项没意义的选项2-1',
+        key: 'rat'
+      }
+    ]
+  },
+  {
+    label: '没意义的选项3',
+    key: 'a-wild-sheep-chase',
+    icon: renderIcon(BookIcon)
+  },
+  {
+    label: '没意义的选项4',
+    key: 'dance-dance-dance',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        // type: 'group',
+        label: '没意义的选项4-1',
+        key: 'people',
+        children: [
+          {
+            label: '没意义的选项4-1',
+            key: 'narrator',
+            icon: renderIcon(PersonIcon)
+          },
+          {
+            label: '4-1',
+            key: 'sheep-man',
+            icon: renderIcon(PersonIcon)
+          }
+        ]
+      },
+      {
+        label: '没意义的选项5',
+        key: 'beverage',
+        icon: renderIcon(WineIcon),
+        children: [
+          {
+            label: '没意义的选项5-1',
+            key: 'whisky'
+          }
+        ]
+      },
+      {
+        label: '没意义的选项6',
+        key: 'food',
+        children: [
+          {
+            label: '没意义的选项6-1',
+            key: 'sandwich'
+          }
+        ]
+      },
+      {
+        label: '没意义的选项7',
+        key: 'the-past-increases-the-future-recedes'
+      }
+    ]
+  }
+]
 </script>
 
 <style lang="scss">
 @import '../theme';
-.container {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-.content {
-  position: relative;
-  flex: 1;
-  margin: 0 $content-margin 0 0;
-  overflow: auto;
-  border-radius: $content-margin;
-  background-color: $content-background;
-  color: $content-color;
-  font-size: .875rem;
-  // box-shadow: inset 0 0 .25rem $content-color;
-
-  > .inner {
-    margin: 1.25rem 1rem;
-    // overflow: hidden;
-
-    > .heading {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      margin-bottom: .875rem; // .625rem;
-      padding-bottom: .25rem;
-      // border-bottom: .0625rem solid darken($content-background, 5%);
-
-      > .title {
-        margin: 0 auto 0 0;
-        font-size: 1.375rem;
-        font-weight: 300;
-        line-height: 1;
-      }
-
-      > .action {
-        display: flex;
-        list-style: none;
-        margin: 0 0 0 1rem;
-        padding: 0;
-        overflow: hidden;
-        font-size: 1rem;
-
-        > li {
-          margin-left: .375rem;
-
-          > a {
-            color: $content-color;
-            opacity: .5;
-            transition: opacity .2s;
-
-            &:hover {
-              opacity: 1;
-            }
-          }
-        }
-      }
-
-      > .search {
-        flex: 1;
-        margin: 0 1.25rem;
-        border-left: .0625rem solid lighten($content-color, 50%);
-
-        &::before {
-          display: inline-block;
-          padding: .375rem .625rem;
-          color: $content-color;
-          opacity: .6;
-        }
-
-        input {
-          width: 30%;
-          padding: .25rem .3rem;
-          background: transparent;
-          border: 0;
-          border-bottom: .0625rem solid transparent;
-          border-radius: 0;
-          color: lighten($content-color, 20%);
-          font-size: .875rem;
-          transition: border-bottom .2s ease, width .3s ease;
-
-          &:focus {
-            width: 90%;
-            border-bottom-color: lighten($content-color, 40%);
-            outline: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-.content-enter-active,
-.content-leave-active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: opacity .5s ease;
-}
-
-.content-enter,
-.content-leave-active {
-  opacity: 0
-}
 
 </style>

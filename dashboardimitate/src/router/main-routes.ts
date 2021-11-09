@@ -6,6 +6,14 @@
 
 export default [
   {
+    name: 'home',
+    path: '/',
+    // meta的定义：简单来说就是路由元信息，也就是每个路由身上携带的信息。
+    // requiresAuth: true // 添加该字段，表示进入这个路由是需要登录的
+    // meta: { requireAuth: true },
+    component: () => import('../layout/index.vue')
+  },
+  {
     name: 'update',
     path: '/update',
     // meta的定义：简单来说就是路由元信息，也就是每个路由身上携带的信息。
