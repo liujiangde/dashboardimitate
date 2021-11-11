@@ -1,2 +1,2 @@
-export { default as provider } from './provider.vue'
-export { default as view } from './view.vue'
+export { default as Provider } from './provider.vue'
+export { default as Viewer } from './view.vue'

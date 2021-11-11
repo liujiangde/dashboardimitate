@@ -1,11 +1,13 @@
 <template>
-    <n-config-provider :theme="darkTheme">
+    <n-config-provider >
       <n-global-style />
-      <n-message-provider>
-        <n-dialog-provider>
-          <slot/>
-        </n-dialog-provider>
-      </n-message-provider>
+      <n-loading-bar-provider>
+          <n-message-provider>
+            <n-dialog-provider>
+              <slot/>
+            </n-dialog-provider>
+          </n-message-provider>
+        </n-loading-bar-provider>
     </n-config-provider>
 
 

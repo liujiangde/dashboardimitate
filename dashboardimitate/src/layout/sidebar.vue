@@ -32,7 +32,7 @@ const collapsed= ref(false);
 
 const menuOptions = [
   {
-    label: '没意义的选项1',
+    label: '首页',
     key: 'hear-the-wind-sing',
     icon: renderIcon(BookIcon)
   },

@@ -10,8 +10,10 @@ This template should help get you started developing with Vue 3 and Typescript i
 
 Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
 
-做成一个可以划的项目
-
+做成一个可以划水的项目
+留名几年
+加一个用户详情页面
+加一个搜索功能并到导航的功能
 计划添加的功能：
 运用three.js做一个3d首页面
 做一个留言板功能
