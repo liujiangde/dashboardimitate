@@ -57,11 +57,8 @@ const  form = {
 const   formLabelWidth= '120px';
 const handleButtonClick = () => {
     console.log(dialogFormVisible);
-    console.log(this);
 
     dialogFormVisible = false
-    console.log('2',dialogFormVisible);
-
 }
 
 const columns = [

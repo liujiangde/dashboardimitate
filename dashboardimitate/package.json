@@ -9,6 +9,9 @@
   "dependencies": {
     "@vicons/ionicons5": "^0.11.0",
     "element-plus": "^1.2.0-beta.3",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-html": "^6.2.0",
     "unplugin-vue-components": "^0.17.2",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12"

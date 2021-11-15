@@ -1,8 +1,8 @@
 <template>
   <n-space vertical size="large">
-    <n-layout has-sider>
+    <n-layout position='absolute' has-sider>
       <Sidebar />
-      <n-layout-content content-style="padding: 10px 20px 10px 20px;">
+      <n-layout-content content-style="padding: 0px 20px">
         <Header />
         <Content />
         <Footer />

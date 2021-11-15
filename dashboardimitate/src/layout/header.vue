@@ -37,6 +37,9 @@ const dang = () => {
 </script>
 <style lang="scss" scoped>
 .l-layout-header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display:flex;
     justify-content: space-between;
     align-items: center;
