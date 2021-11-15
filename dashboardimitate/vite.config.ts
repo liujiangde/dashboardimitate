@@ -9,5 +9,8 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    ]
+    ],
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
+  },
 })

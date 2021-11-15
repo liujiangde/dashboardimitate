@@ -9,8 +9,7 @@
 
 <style lang="scss" scoped>
 .l-layout-content{
-  min-height: 91vh;
-  // height: 100%;
+  min-height: calc(100vh - 114px);
   padding: 10px 10px 10px 16px;
   background-size: 100%;
   background: linear-gradient(rgb(255, 255, 255,0.8), rgb(255, 255, 255,0.8)), url('src/assets/bg-girl.jpeg') no-repeat 0% 20%/ cover;

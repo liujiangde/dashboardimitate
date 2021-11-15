@@ -9,7 +9,6 @@
   </n-button>
   <p>记录列表</p>
   <n-space vertical :size="12">
-
     <n-data-table
       ref="dataTableInstRef"
       :columns="columns"
@@ -17,33 +16,16 @@
       :pagination="pagination"
       />
   </n-space>
-  <el-dialog v-model= dialogFormVisible  title="Shipping address">
-    <el-form :model="form">
-      <el-form-item label="Promotion name" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="Zones" :label-width="formLabelWidth">
-        <el-select v-model="form.region" placeholder="Please select a zone">
-          <el-option label="Zone No.1" value="shanghai"></el-option>
-          <el-option label="Zone No.2" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false"
-          >Confirm</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
+  <AddUserAccountVue :dialogFormVisible = state.dialogFormVisible />
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue'
+import { reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
 import { useDialog } from 'naive-ui'
-let dialogFormVisible: Boolean = false
+import  AddUserAccountVue  from './home/addUserAccount.vue'
+const state = reactive({
+  dialogFormVisible: false
+})
 const  form = {
         name: '',
         region: '',
@@ -55,10 +37,9 @@ const  form = {
         desc: '',
       };
 const   formLabelWidth= '120px';
+// TODO:打开弹框
 const handleButtonClick = () => {
-    console.log(dialogFormVisible);
-
-    dialogFormVisible = false
+    state.dialogFormVisible = !state.dialogFormVisible
 }
 
 const columns = [

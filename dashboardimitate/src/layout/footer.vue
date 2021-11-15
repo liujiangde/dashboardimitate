@@ -1,6 +1,5 @@
 <template>
     <n-layout-footer
-      position="absolute"
       style="height: 64px; padding: 24px;"
       bordered
     >
