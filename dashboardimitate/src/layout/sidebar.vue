@@ -24,7 +24,7 @@ import {
   WineOutline as WineIcon
 } from '@vicons/ionicons5'
 
-function renderIcon (icon) {
+function renderIcon (icon:any) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 const inverted = ref(false);
@@ -37,69 +37,89 @@ const menuOptions = [
     icon: renderIcon(BookIcon)
   },
   {
-    label: '没意义的选项2',
+    label: '总览',
     key: 'pinball-1973',
     icon: renderIcon(BookIcon),
     children: [
       {
-        label: '选项没意义的选项2-1',
-        key: 'rat'
+        label: '数据总览',
+        key: 'pinball-1973-datasource'
+      },
+      {
+        label: '升级日志',
+        key: 'pinball-1973-update'
       }
     ]
   },
   {
-    label: '没意义的选项3',
+    label: '商品',
     key: 'a-wild-sheep-chase',
-    icon: renderIcon(BookIcon)
-  },
-  {
-    label: '没意义的选项4',
-    key: 'dance-dance-dance',
     icon: renderIcon(BookIcon),
     children: [
       {
-        // type: 'group',
-        label: '没意义的选项4-1',
-        key: 'people',
-        children: [
-          {
-            label: '没意义的选项4-1',
-            key: 'narrator',
-            icon: renderIcon(PersonIcon)
-          },
-          {
-            label: '4-1',
-            key: 'sheep-man',
-            icon: renderIcon(PersonIcon)
-          }
-        ]
+        label: '商品列表',
+        key: 'a-wild-sheep-chase-thing'
       },
       {
-        label: '没意义的选项5',
-        key: 'beverage',
-        icon: renderIcon(WineIcon),
-        children: [
-          {
-            label: '没意义的选项5-1',
-            key: 'whisky'
-          }
-        ]
+        label: '商品分类',
+        key: 'a-wild-sheep-chase-type'
       },
       {
-        label: '没意义的选项6',
-        key: 'food',
-        children: [
-          {
-            label: '没意义的选项6-1',
-            key: 'sandwich'
-          }
-        ]
+        label: '集团分组',
+        key: 'a-wild-sheep-chase-group'
       },
       {
-        label: '没意义的选项7',
-        key: 'the-past-increases-the-future-recedes'
+        label: '回收站',
+        key: 'a-wild-sheep-chase-laji'
+      },
+      {
+        label: '商品标签',
+        key: 'a-wild-sheep-chase-tag'
       }
     ]
+  },
+  {
+    label: '订单',
+    key: 'order',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        label: '订单管理',
+        key: 'order-manager',
+      },
+      {
+        label: '评价管理',
+        key: 'order-later',
+      },
+      {
+        label: '订单配送',
+        key: 'order-translate',
+      }
+    ]
+  },
+  {
+    label: '设置',
+    key: 'setting',
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        label: '权限设置',
+        key: 'setting-authority',
+      },
+      {
+        label: '应用基本设置',
+        key: 'setting-base',
+      },
+      {
+        label: '地址库',
+        key: 'setting-address',
+      }
+    ]
+  },
+  {
+    label: '操作记录',
+    key: 'oprate',
+    icon: renderIcon(BookIcon),
   }
 ]
 

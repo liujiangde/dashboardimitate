@@ -15,7 +15,7 @@ export default [
   {
     path: '/',
     component: () => import(/* webpackChunkName: 'common' */ '../layout/index.vue'),
-    children: mainRoutes.concat(demoRoutes)
+    children: mainRoutes
   },
   {
     name: 'not-found',
