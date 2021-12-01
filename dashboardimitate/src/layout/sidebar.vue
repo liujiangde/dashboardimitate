@@ -16,7 +16,8 @@
       </n-layout-sider>
 </template>
 <script lang= "ts"  setup >
-import { h,ref } from 'vue'
+import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
+import { RouterLink } from 'vue-router'
 import { NIcon } from 'naive-ui'
 import {
   BookOutline as BookIcon,
@@ -32,7 +33,8 @@ const collapsed= ref(false);
 
 const menuOptions = [
   {
-    label: '首页',
+    // label: '首页',
+    label: () => h(RouterLink, { to: '/home' }, { default: () => '首页' }),
     key: 'hear-the-wind-sing',
     icon: renderIcon(BookIcon)
   },
@@ -42,11 +44,13 @@ const menuOptions = [
     icon: renderIcon(BookIcon),
     children: [
       {
-        label: '数据总览',
+        // label: '数据总览',
+         label: () => h(RouterLink, { to: '/datasource' }, { default: () => '数据总览' }),
         key: 'pinball-1973-datasource'
       },
       {
-        label: '升级日志',
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/update' }, { default: () => '升级日志' }),
         key: 'pinball-1973-update'
       }
     ]

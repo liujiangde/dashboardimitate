@@ -27,4 +27,9 @@ export default [
     path: '/overview',
     component: () => import('../views/update.vue')
   },
+  {
+    name: 'datasource',
+    path: '/datasource',
+    component: () => import('../views/datasource.vue')
+  },
 ]

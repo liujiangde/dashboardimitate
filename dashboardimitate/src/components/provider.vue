@@ -1,5 +1,5 @@
 <template>
-    <n-config-provider >
+    <n-config-provider :theme-overrides="{ common: { fontWeightStrong: '600' } }" >
       <n-global-style />
       <n-loading-bar-provider>
           <n-message-provider>
