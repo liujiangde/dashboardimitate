@@ -17,7 +17,9 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 计划添加的功能：
 运用three.js做一个3d首页面
 做一个留言板功能
-利用websocket做一个聊天功能
+利用websocket做一个聊天功能，实时聊天室
+无限加载页面的功能
+写个svg
 放入一个小游戏 俄罗斯方块
 加上一个获取资讯（财经，技术）的页面 
 加上一个敲架子鼓的页面，

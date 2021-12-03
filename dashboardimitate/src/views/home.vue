@@ -39,7 +39,6 @@ const   formLabelWidth= '120px';
 const handleButtonClick = () => {
     state.dialogFormVisible = !state.dialogFormVisible
 }
-
 const columns = [
   {
     title: '名字',
