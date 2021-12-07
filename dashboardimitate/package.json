@@ -7,19 +7,23 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@vicons/ionicons5": "^0.11.0",
     "element-plus": "^1.2.0-beta.3",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-html": "^6.2.0",
+    "jquery": "^3.5.0",
     "unplugin-vue-components": "^0.17.2",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@antv/l7-maps": "^2.6.7",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "@vitejs/plugin-vue": "^1.9.3",
+    "crypto-js": "^4.1.1",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",

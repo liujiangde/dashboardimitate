@@ -85,19 +85,19 @@ const state = reactive({
         ],
 }}
 )
-const submitForm = (formName) => {
-  this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    }
-const resetForm = (formName) => {
-  this.$refs[formName].resetFields()
-}
+// const submitForm = (formName) => {
+//   this.$refs[formName].validate((valid) => {
+//         if (valid) {
+//           alert('submit!')
+//         } else {
+//           console.log('error submit!!')
+//           return false
+//         }
+//       })
+//     }
+// const resetForm = (formName) => {
+//   this.$refs[formName].resetFields()
+// }
 
   const  form = {
         name: '',

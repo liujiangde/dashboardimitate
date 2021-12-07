@@ -34,11 +34,24 @@ const  form = {
         resource: '',
         desc: '',
       };
+
+
+      interface TableInfo {
+        key: number,
+        name: String,
+        age: number,
+        job: String,
+        gender: String,
+        technologyStack: String,
+        email: String
+      }
+
 const   formLabelWidth= '120px';
 // TODO:打开弹框
 const handleButtonClick = () => {
     state.dialogFormVisible = !state.dialogFormVisible
 }
+
 const columns = [
   {
     title: '名字',
@@ -47,7 +60,7 @@ const columns = [
   {
     title: '年龄',
     key: 'age',
-    sorter:  (a, b) => a.age - b.age,
+    sorter:  (a:TableInfo , b:TableInfo) => a.age - b.age,
   },
   {
     title: '职业',
@@ -63,9 +76,9 @@ const columns = [
         value: 'rearend'
       }
     ],
-    render: (rowData) => { return rowData['job'] === 'frontend' ? '前端' : '后端'},
+    render: (rowData:TableInfo) => { return rowData['job'] === 'frontend' ? '前端' : '后端'},
 
-    filter (value, row) {
+    filter (value:String, row:TableInfo) {
       return row.job === value ? -1 : 0
     }
   },
@@ -73,7 +86,7 @@ const columns = [
     title: '性别',
     defaultSortOrder: false,
     key: 'gender',
-    render: (rowData:{}) => { return rowData['gender'] === 'male' ? '男' : '女'},
+    render: (rowData:TableInfo) => { return rowData['gender'] === 'male' ? '男' : '女'},
     filterOptions: [
       {
         label: '男',
@@ -84,7 +97,7 @@ const columns = [
         value: 'famale'
       }
     ],
-    filter (value:String, row:Object) {
+    filter (value:String, row:TableInfo) {
       return row.gender === value ? -1 : 0
     }
   },

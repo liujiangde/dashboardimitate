@@ -1,7 +1,7 @@
 <template>
   <div class="data-content">
           <div class="data-conten-ttitle">
-            <div>概况</div>
+            <div>{{props.title }}</div>
             <slot name = 'menu' v-bind:activeKey="props.value" ></slot>
           </div>
           <div class="data-list-content">
@@ -28,6 +28,10 @@
 <script setup lang="ts">
   import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
   const props = defineProps({
+        title: {
+          type:String,
+          default:'概况'
+        },
         value:{
             type:String,
             default:'two'

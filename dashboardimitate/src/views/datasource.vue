@@ -2,7 +2,7 @@
 <template>
   <div class="data-overview-content">
       <div class="data-overview-content-l">
-        <CountShow   :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
+        <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
             <template   v-slot:menu ="slotprops">
               <n-menu v-model:value="slotprops.activeKey"
               @update:value="setactiveKey"
@@ -10,16 +10,23 @@
               :options="state.menuOptions" />
             </template>
         </CountShow>
+        <Gaode class="amap-gaode">
+
+        </Gaode>
       </div>
       <div class="data-overview-content-r">
           <div class="data-overview-content-r-qrcode">
             <img src="src/assets/zsm.jpeg" class="data-overview-content-r-img" alt="" srcset="">
+          </div>
+          <div class="data-overview-content-r-fall">
+            ajifng
           </div>
       </div>
   </div>
 </template>
 
 <script lang="ts"  setup >
+import Gaode from "./datasource/gaode.vue";
 import CountShow  from "./datasource/countShow.vue";
 import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
 
@@ -93,10 +100,17 @@ const setactiveKey = (params: String) => {
     .data-overview-content-l{
       width: 75%;
       height: 100%;
+      padding: 0 10px;
 
+      .amap-gaode{
+        height: 490px;
+        width: 100%;
+      }
     }
     .data-overview-content-r{
       width: 25%;
+      height: 278px;
+
       background-color: red;
       .data-overview-content-r-qrcode{
         width: 100%;
@@ -105,12 +119,16 @@ const setactiveKey = (params: String) => {
         // background-image: u;
         .data-overview-content-r-img{
           width: 100%;
-          height: 100%;
+          height: calc(100% - 278px);
           // img父容器的高度会比img的高度多几像素的问题
           // 基线问题，div是块级标签，img是行内块元素，在块元素里默认有3px或者4px空白（其实就是和文本的基线对齐不管有没有文本）
           display:block
 
         }
+      }
+      .data-overview-content-r-fall{
+        width: 100%;
+        height: 100%;
       }
      }
   }
