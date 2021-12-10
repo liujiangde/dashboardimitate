@@ -15,7 +15,7 @@
       :pagination="pagination"
       />
   </n-space>
-  <AddUserAccountVue :dialogFormVisible = state.dialogFormVisible />
+  <!-- <AddUserAccountVue :dialogFormVisible = state.dialogFormVisible /> -->
 </template>
 
 <script lang="ts" setup>

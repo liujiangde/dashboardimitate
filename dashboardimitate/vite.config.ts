@@ -12,6 +12,17 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     ],
+  server:{
+      // https: true,
+      proxy:{
+        '/_AMapService': {
+          target: 'https://restapi.amap.com',
+          changeOrigin: true,
+          rewrite: (path) =>{ console.log('path',path );
+           return  path.replace(/^\/_AMapService/, '')}
+        },
+      }
+    },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

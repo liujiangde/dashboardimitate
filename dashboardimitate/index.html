@@ -4,10 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--有样式 会导致地图占满整个内容模块部分 -->
+    <!-- <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/> -->
+    <!-- <script type="text/javascript">
+      window._AMapSecurityConfig = {
+          serviceHost:'https://restapi.amap.com/_AMapService',
+      }
+</script> -->
+
+    <script type="text/javascript">
+      window._AMapSecurityConfig = {
+          securityJsCode:'24362b9cc283a3a9e3481b56cdc0cadb',
+      }
+    </script>
     <title>Vite App</title>
   </head>
   <body>
     <div id="app"></div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
+  <style type="text/css">
+    .amap-logo{
+    display: none;
+    opacity:0 !important;
+    }
+    .amap-copyright {
+        opacity:0;
+    }
+</style>
+
 </html>

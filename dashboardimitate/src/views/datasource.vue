@@ -10,8 +10,7 @@
               :options="state.menuOptions" />
             </template>
         </CountShow>
-        <Gaode class="amap-gaode">
-
+        <Gaode class="amap-gaode" v-model:weath="weathdata">
         </Gaode>
       </div>
       <div class="data-overview-content-r">
@@ -19,16 +18,24 @@
             <img src="src/assets/zsm.jpeg" class="data-overview-content-r-img" alt="" srcset="">
           </div>
           <div class="data-overview-content-r-fall">
-            ajifng
+             <p>{{weathdata.city}}当日天气</p>
+            <div>天气：{{weathdata.weather}}</div>
+            <div>实时气温：{{weathdata.weather}}摄氏度</div>
+            <div>风向：{{weathdata.windDirection}}</div>
+            <div>风力：{{weathdata.windPower}}级</div>
+            <div>空气湿度：{{weathdata.humidity}}%</div>
+            <div>天气获取时间：{{weathdata.reportTime}}</div>
           </div>
       </div>
   </div>
 </template>
 
 <script lang="ts"  setup >
-import Gaode from "./datasource/gaode.vue";
-import CountShow  from "./datasource/countShow.vue";
+import Gaode from "@/views/datasource/gaode.vue";
+import CountShow  from "@/views/datasource/countShow.vue";
 import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
+
+const weathdata= ref({})
 
 const state = reactive({
     activeKey: 'one',
@@ -38,7 +45,7 @@ const state = reactive({
       third: 30,
       four: 40
     },
-    cycle: '实时',
+    cycle: '今日',
    menuOptions : [
   {
     label: '实时',
@@ -59,12 +66,12 @@ const state = reactive({
 ]
 })
 
+
 const setactiveKey = (params: String) => {
     switch (params) {
       case 'one':
         state.activeKey = 'one'
-        state.cycle = '实时'
-        // Object.keys(state.countList).forEach( item  => state.countList[item.toString()] += 1   )
+        state.cycle = '今日'
         state.countList.first++
         return
       case 'two':
@@ -84,7 +91,7 @@ const setactiveKey = (params: String) => {
         return
       default:
         state.activeKey = 'one'
-        state.cycle = '实时'
+        state.cycle = '今日'
         return
     }
 }
