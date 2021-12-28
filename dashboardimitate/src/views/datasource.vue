@@ -20,7 +20,7 @@
           <div class="data-overview-content-r-fall">
              <p>{{weathdata.city}}当日天气</p>
             <div>天气：{{weathdata.weather}}</div>
-            <div>实时气温：{{weathdata.weather}}摄氏度</div>
+            <div >实时气温：{{weathdata.temperature}} &deg;C</div>
             <div>风向：{{weathdata.windDirection}}</div>
             <div>风力：{{weathdata.windPower}}级</div>
             <div>空气湿度：{{weathdata.humidity}}%</div>

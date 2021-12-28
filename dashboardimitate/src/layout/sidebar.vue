@@ -45,12 +45,12 @@ const menuOptions = [
     children: [
       {
         // label: '数据总览',
-         label: () => h(RouterLink, { to: '/datasource' }, { default: () => '数据总览' }),
+         label: () => h(RouterLink, { to: '/datasource' }, { default: () => '搞搞高德' }),
         key: 'pinball-1973-datasource'
       },
       {
         // label: '升级日志',
-        label: () => h(RouterLink, { to: '/update' }, { default: () => '升级日志' }),
+        label: () => h(RouterLink, { to: '/update' }, { default: () => '延迟取消' }),
         key: 'pinball-1973-update'
       }
     ]

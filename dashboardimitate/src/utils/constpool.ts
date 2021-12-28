@@ -1,1 +1,1 @@
-export const projectkey = 'liu_test_'
+export const projectkey = 'liu_test'
