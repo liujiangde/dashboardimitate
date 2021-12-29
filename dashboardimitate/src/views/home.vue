@@ -1,7 +1,7 @@
 <template>
   <h1>达摩</h1>
-  <p>项目介绍：</p>
-  <p>这是一个用于平时练习的项目，将新学到的技术用上。项目技术栈：ts vite vue3 vue-router naive-ui sass。</p>
+  <p>项目介绍：无</p>
+  <p>项目技术栈：ts vite vue3 vue-router naive-ui sass。</p>
 
   <n-button  @click=" handleButtonClick">
     留下足迹

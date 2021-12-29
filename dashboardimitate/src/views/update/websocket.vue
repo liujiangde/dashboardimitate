@@ -21,9 +21,8 @@ import { useRouter } from "vue-router"
 
 // 使用方式：node运行src/utils/ws-server.js 然后启动两个前端服务，控制台查看效果。
 const router = useRouter();
-const root = ref("默认值");
 let state = reactive({
-    text : 'asdf',
+    text : '',
 })
 
  const changetext = (value)=>{
@@ -32,10 +31,10 @@ let state = reactive({
 
     //调用websocket对象建立连接：
     //参数：ws/wss(加密)://ip:port （字符串）
-    var websocket = null;
-    if('WebSocket' in window){
-         websocket = new WebSocket('ws://127.0.0.1:8080');
-    }
+    // var websocket = null;
+    // if('WebSocket' in window){
+    const  websocket = new WebSocket('ws://127.0.0.1:8080');
+    // }
     const getStatus = (params) => {
       switch (params) {
         case 0:

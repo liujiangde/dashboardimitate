@@ -15,7 +15,7 @@
       </div>
       <div class="data-overview-content-r">
           <div class="data-overview-content-r-qrcode">
-            <img src="src/assets/zsm.jpeg" class="data-overview-content-r-img" alt="" srcset="">
+            <img ref="imgset" :src='state.imgSrc' class="data-overview-content-r-img" alt="" srcset="">
           </div>
           <div class="data-overview-content-r-fall">
              <p>{{weathdata.city}}当日天气</p>
@@ -38,6 +38,7 @@ import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponen
 const weathdata= ref({})
 
 const state = reactive({
+    imgSrc: 'https://image.shutterstock.com/image-photo/tree-frog-flying-laughing-animal-600w-752492104.jpg',
     activeKey: 'one',
     countList: {
       first : 10,
@@ -118,7 +119,7 @@ const setactiveKey = (params: String) => {
       width: 25%;
       height: 278px;
 
-      background-color: red;
+      // background-color: red;
       .data-overview-content-r-qrcode{
         width: 100%;
         // padding-bottom: 100%;
