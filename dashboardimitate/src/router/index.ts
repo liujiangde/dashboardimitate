@@ -8,12 +8,13 @@ const router = createRouter({
 })
 
 router.beforeEach( to =>{
-
+  debugger
   // token的数据
   // access: "17cee9a8eee1c46917cee9a8eee181d1"
   // expires: 1636091279099
   // refresh: "17cee9a8b16185f817cee9a8b1616ba3"
   // type: "Bearer"
+    // @ts-ignore
     const { expires = 0 } = localStorage.getItem( projectkey +'token') ?? {} //为啥不是个空字符串或者0
 
     if (to.name === 'login' && expires > Date.now()) {

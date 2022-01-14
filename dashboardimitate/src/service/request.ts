@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig,Method } from 'axios';
 // import { Message } from '@alicloud/console-components';
 // 进度条功能
 import NProgress from 'nprogress';
@@ -93,15 +93,15 @@ axios.defaults.transformRequest = [
 ];
 // http request 拦截器
 axios.interceptors.request.use(
-	(config) => {
+	(config:any) => {
 		NProgress.start();
 		config.headers['Access-Control-Allow-Orign'] = '*';
 		config.headers['Access-Control-Allow-Credentials'] = 'true';
-		config.headers.Authorization = `${cache.getLocal(TOKEN)}`;
-		config.headers[TENANT_ID] = `${cache.getSession(TENANT_ID)}`;
-		config.headers[PROJECT_ID] = `${cache.getSession(PROJECT_ID)}`;
-		config.headers[ROLE_ID] = `${cache.getSession(ROLE_ID)}`;
-		config.headers[DC_ID] = `${cache.getSession(DC_ID)}`;
+		config.headers.Authorization = `${window.localStorage.getLocal(TOKEN)}`;
+		config.headers[TENANT_ID] = `${window.sessionStorage.getSession(TENANT_ID)}`;
+		config.headers[PROJECT_ID] = `${window.sessionStorage.getSession(PROJECT_ID)}`;
+		config.headers[ROLE_ID] = `${window.sessionStorage.getSession(ROLE_ID)}`;
+		config.headers[DC_ID] = `${window.sessionStorage.getSession(DC_ID)}`;
 		return config;
 	},
 	(err) => {
@@ -133,133 +133,13 @@ axios.interceptors.response.use(
 	}
 );
 
-/**
- * _get方法，对应get请求
- * @param {String} url [请求的url地址]
- * @param {Object} params [请求时携带的参数]
- * @param {Object} option [请求配置]
- * @param {String} method [请求方法]
- * @return {Promise}
- */
-function _get(url, params = {}, option = {}, method = 'GET') {
-	return new Promise((resolve, reject) => {
-		const { restUrl, data } = restfulAPI(url, params);
-		let options = {
-			url: restUrl,
-			params: data,
-			method,
-			paramsSerializer: (params) => {
-				return qs.stringify(params, { indices: false });
-			},
-			...option
-		};
-		axios(options)
-			.then((res) => {
-				resolve(res.data);
-			})
-			.catch((err) => {
-				reject(err.data);
-			});
-	});
-}
-
-// function _delete(url, params = {}, option = {}) {
-// 	return _get(url, params, option, 'DELETE');
-// }
-
-function _delete(url, params = {}, option = {}, method = 'DELETE') {
-	return new Promise((resolve, reject) => {
-		const { restUrl, data } = restfulAPI(url, params);
-		let options = {
-			url: restUrl,
-			params: data,
-			method,
-			headers: {
-				// 'Content-Type':"application/x-www-form-urlencoded",
-				Accept: '*/*'
-			},
-			paramsSerializer: (params) => {
-				return qs.stringify(params, { indices: false });
-			},
-			...option
-		};
-		axios(options)
-			.then((res) => {
-				resolve(res.data);
-			})
-			.catch((err) => {
-				reject(err.data);
-			});
-	});
-}
-
-/**
- * _post方法，对应post请求
- * @param {String} url [请求的url地址]
- * @param {Object} params [请求时携带的参数]
- * @param {Object} option [请求配置]
- * @param {String} method [请求方法]
- * 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
- */
-function _post(url, params = {}, option = {}, method = 'POST') {
-	return new Promise((resolve, reject) => {
-		console.log(params);
-		const { restUrl } = restfulAPI(url, params);
-		let options = {
-			url: restUrl,
-			data: JSON.stringify(params),
-			method,
-			headers: {
-				'Content-Type': 'application/json;charset=UTF-8'
-			},
-			...option
-		};
-		axios(options)
-			.then((res) => {
-				resolve(res.data);
-			})
-			.catch((err) => {
-				reject(err.data);
-			});
-	});
-}
-
-/**
- * _post方法，对应post请求
- * @param {String} url [请求的url地址]
- * @param {Object} params [请求时携带的参数]
- * @param {Object} option [请求配置]
- * @param {String} method [请求方法]
- * 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
- */
-function _postForUpload(url, params = {}, option = {}, method = 'POST') {
-	return new Promise((resolve, reject) => {
-		const { restUrl, data } = restfulAPI(url, params);
-		let options = {
-			url: restUrl,
-			data: data,
-			method,
-			headers: {
-				'Content-Type': 'multipart/form-data;boundary=ABC'
-			},
-			// Multipart
-			// processData: false,
-			// contentType: false,
-			...option
-		};
-
-		axios(options)
-			.then((res) => {
-				resolve(res.data);
-			})
-			.catch((err) => {
-				reject(err.data);
-			});
-	});
-}
-
-function _put(url, params = {}, option = {}) {
-	return _post(url, params, option, 'PUT');
+ interface Options   {
+  url: string,
+  data?: any,
+  method: string,
+  paramsSerializer?: (params: any) => string,
+  headers?: any,
+  option?: any
 }
 
 /**
@@ -269,13 +149,13 @@ function _put(url, params = {}, option = {}) {
  * @param {Object} option [请求配置]
  * @param {String} method [请求方法]
  */
-function _json(url, params = {}, option = {}, method = 'POST') {
+function _post(url, params = {}, option = {}, ) {
 	return new Promise((resolve, reject) => {
 		const { restUrl, data } = restfulAPI(url, params);
-		let options = {
+		let options:AxiosRequestConfig<any> = {
 			url: restUrl,
 			data,
-			method,
+			method: 'POST',
 			paramsSerializer: (params) => {
 				return qs.stringify(params, { indices: false });
 			},
@@ -284,7 +164,7 @@ function _json(url, params = {}, option = {}, method = 'POST') {
 			},
 			...option
 		};
-		axios(options)
+		axios(options as any)
 			.then((res) => {
 				resolve(res.data);
 			})
@@ -333,10 +213,7 @@ const restfulAPI = function (url, formData) {
 };
 
 export default {
-	get: _get,
-	delete: _delete,
 	post: _post,
-	put: _put,
-	json: _json,
+
 	restfulAPI: restfulAPI
 };
