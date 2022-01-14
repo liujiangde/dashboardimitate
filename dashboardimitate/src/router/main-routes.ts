@@ -32,4 +32,9 @@ export default [
     path: '/datasource',
     component: () => import('../views/datasource.vue')
   },
+  {
+    name: 'three',
+    path: '/three',
+    component: () => import('../views/three.vue')
+  },
 ]

@@ -2,14 +2,15 @@
 <template>
   <div class="data-overview-content">
       <div class="data-overview-content-l">
-        <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
-            <template   v-slot:menu ="slotprops">
+        <!-- <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
+            <template
+              v-slot:menu ="slotprops">
               <n-menu v-model:value="slotprops.activeKey"
               @update:value="setactiveKey"
               mode="horizontal"
               :options="state.menuOptions" />
             </template>
-        </CountShow>
+        </CountShow> -->
         <Gaode class="amap-gaode" v-model:weath="weathdata">
         </Gaode>
       </div>
@@ -35,7 +36,7 @@ import Gaode from "@/views/datasource/gaode.vue";
 import CountShow  from "@/views/datasource/countShow.vue";
 import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
 
-const weathdata= ref({})
+const weathdata:any= ref({})
 
 const state = reactive({
     imgSrc: 'https://image.shutterstock.com/image-photo/tree-frog-flying-laughing-animal-600w-752492104.jpg',

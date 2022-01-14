@@ -2,7 +2,9 @@
   <div class="data-content">
           <div class="data-conten-ttitle">
             <div>{{props.title }}</div>
-            <slot name = 'menu' v-bind:activeKey="props.value" ></slot>
+            <slot
+            name = 'menu'
+            v-bind:activeKey="props.value" ></slot>
           </div>
           <div class="data-list-content">
               <div class="data-list-info">

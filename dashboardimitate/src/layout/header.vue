@@ -21,7 +21,7 @@
         <n-icon size="20" :depth="2"><Albums /></n-icon>
       </n-button>
       <n-button   text @click="dang">
-        <img src="src/assets/account.svg" style="width:15px;height:15px;" alt="" srcset="">
+        <img src="@/assets/account.svg" style="width:15px;height:15px;" alt="" srcset="">
       </n-button>
     </n-space>
   </n-layout-header>

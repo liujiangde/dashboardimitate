@@ -10,9 +10,8 @@
 
 <script lang='ts' setup >
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { reactive } from 'vue-demi';
+import { reactive } from 'vue';
 const emit = defineEmits(["weath"])
-
 let state = reactive({
     text : '地图当前静止',
     mapdata: {
@@ -24,7 +23,7 @@ let state = reactive({
       features: ['bg','point','road','building'], //设置地图上显示的元素种类, 支持'bg'（地图背景）、'point'（POI点）、'road'（道路）、'building'（建筑物）
     },
 })
-let map= {};
+let map: any= {};
 
 const initMap = (AMap) => {
             map = new AMap.Map("container",{
@@ -41,6 +40,7 @@ const initMap = (AMap) => {
                 const container  =  document.getElementById("container")
                 weather.getLive('杭州市', function(err, data) {
                     if (!err) {
+                      // @ts-ignore
                       emit("update:weath", data)
                     }
                 });
@@ -108,13 +108,11 @@ AMapLoader.load({
         }).catch(e => {
         	console.error(e);
         })
+
+
 </script>
 <style lang="scss" scoped>
   @import '/src/theme.scss';
-
-
-
-
 .amap{
   height: 100%;
   width: 100%;

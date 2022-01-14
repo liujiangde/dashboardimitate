@@ -39,7 +39,7 @@ const menuOptions = [
     icon: renderIcon(BookIcon)
   },
   {
-    label: '总览',
+    label: '瞎搞1',
     key: 'pinball-1973',
     icon: renderIcon(BookIcon),
     children: [
@@ -50,8 +50,13 @@ const menuOptions = [
       },
       {
         // label: '升级日志',
-        label: () => h(RouterLink, { to: '/update' }, { default: () => '延迟取消' }),
+        label: () => h(RouterLink, { to: '/update' }, { default: () => '微博梭柯特' }),
         key: 'pinball-1973-update'
+      },
+      {
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/three' }, { default: () => 'three' }),
+        key: 'pinball-1973-three'
       }
     ]
   },
