@@ -11,23 +11,20 @@
   </n-space>
 </template>
 
-
-
-
 <script lang="ts" setup>
-  import Header from "./header.vue";
-  import Footer from "./footer.vue";
-  import Content from "./content.vue";
-  import Sidebar from "./sidebar.vue";
-  import { h,ref } from 'vue'
-  import { NIcon } from 'naive-ui'
-  import {
+import Header from './header-layout.vue'
+import Footer from './footer-layout.vue'
+import Content from './content-layout.vue'
+import Sidebar from './sidebar.vue'
+import { h, ref } from 'vue'
+import { NIcon } from 'naive-ui'
+import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
   WineOutline as WineIcon
 } from '@vicons/ionicons5'
 
-  function renderIcon (icon) {
+function renderIcon (icon) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 

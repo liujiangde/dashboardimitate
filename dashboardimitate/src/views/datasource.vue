@@ -2,7 +2,7 @@
 <template>
   <div class="data-overview-content">
       <div class="data-overview-content-l">
-        <!-- <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
+        <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
             <template
               v-slot:menu ="slotprops">
               <n-menu v-model:value="slotprops.activeKey"
@@ -10,7 +10,7 @@
               mode="horizontal"
               :options="state.menuOptions" />
             </template>
-        </CountShow> -->
+        </CountShow>
         <Gaode class="amap-gaode" v-model:weath="weathdata">
         </Gaode>
       </div>
@@ -47,22 +47,22 @@ const state = reactive({
       third: 30,
       four: 40
     },
-    cycle: '今日',
+    cycle: 'a',
    menuOptions : [
   {
-    label: '实时',
+    label: 'a',
     key: 'one',
   },
   {
-    label: '昨日',
+    label: 'bb',
     key: 'two',
   },
   {
-    label: '近7天',
+    label: 'ccc',
     key: 'three',
   },
   {
-    label: '近30天',
+    label: 'dddd',
     key: 'four',
   }
 ]

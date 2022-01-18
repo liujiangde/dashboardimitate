@@ -52,6 +52,11 @@ const handleButtonClick = () => {
     state.dialogFormVisible = !state.dialogFormVisible
 }
 
+interface ColumnsLIst {
+    title: string,
+    key: string,
+}
+
 const columns = [
   {
     title: '名字',

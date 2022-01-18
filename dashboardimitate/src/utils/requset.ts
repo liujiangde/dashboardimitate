@@ -1,9 +1,9 @@
-import { resolve } from "path";
+import { resolve } from 'path'
 import fs from 'fs'
-const axios = require('axios').default;
+const axios = require('axios').default
 
-const instance = axios.create();
-instance.defaults.timeout = 2500;
+const instance = axios.create()
+instance.defaults.timeout = 2500
 
 // 允许在向服务器发送前，修改请求数据
 
@@ -12,7 +12,7 @@ instance.defaults.timeout = 2500;
 //   return data;
 // }],
 
- // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+// `transformResponse` 在传递给 then/catch 前，允许修改响应数据
 //  transformResponse: [function (data) {
 //   // 对 data 进行任意转换处理
 
@@ -180,55 +180,51 @@ instance.defaults.timeout = 2500;
 //  decompress: true // 默认值
 // }
 
-
-const _get =  () =>  {
-  return new Promise((resolve,reject)=>{
-      const params ={
-        method: 'get',
-        url:  '',
-        data: {},
+const _get = () => {
+  return new Promise((resolve, reject) => {
+    const params = {
+      method: 'get',
+      url: '',
+      data: {}
     }
-      instance.get(params)
-        .then( (response) => {
-          // 处理成功情况
-          resolve(response)
-        })
-        .catch( (error) => {
-          // 处理错误情况
-          if (error.response) {
-            // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // 请求已经成功发起，但没有收到响应
-            // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
-            // 而在node.js中是 http.ClientRequest 的实例
-            console.log(error.request);
-          } else {
-            // 发送请求时出了点问题
-            console.log('Error', error.message);
-          }
-          console.log('config',error.config);
-          console.log( 'error',error.toJSON());
+    instance.get(params)
+      .then((response) => {
+        // 处理成功情况
+        resolve(response)
+      })
+      .catch((error) => {
+        // 处理错误情况
+        if (error.response) {
+          // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          // 请求已经成功发起，但没有收到响应
+          // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
+          // 而在node.js中是 http.ClientRequest 的实例
+          console.log(error.request)
+        } else {
+          // 发送请求时出了点问题
+          console.log('Error', error.message)
+        }
+        console.log('config', error.config)
+        console.log('error', error.toJSON())
 
-          reject(error)
-        })
-        .then(function () {
-          // 总是会执行
-        });
+        reject(error)
+      })
+      .then(function () {
+        // 总是会执行
+      })
   })
 }
 
-
-
-  // 在 node.js 用GET请求获取远程图片
-  axios({
-    method: 'get',
-    url: 'http://bit.ly/2mTM3nY',
-    responseType: 'stream'
-  })
+// 在 node.js 用GET请求获取远程图片
+axios({
+  method: 'get',
+  url: 'http://bit.ly/2mTM3nY',
+  responseType: 'stream'
+})
   .then(function (response) {
     response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-  });
-
+  })

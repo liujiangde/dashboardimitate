@@ -9,7 +9,7 @@ import actions from './actions'
 
 const strict = import.meta.env.DEV
 
-const store = createStore({ state, getters, mutations, actions,  strict })
+const store = createStore({ state, getters, mutations, actions, strict })
 
 export type { State } from './state'
 export default store

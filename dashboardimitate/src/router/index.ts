@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { projectkey } from '../utils/constpool'
 import routes from './routes'
 
@@ -8,7 +8,6 @@ const router = createRouter({
 })
 
 router.beforeEach( to =>{
-  debugger
   // token的数据
   // access: "17cee9a8eee1c46917cee9a8eee181d1"
   // expires: 1636091279099
