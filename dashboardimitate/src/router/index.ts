@@ -1,32 +1,31 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { projectkey } from '../utils/constpool'
 import routes from './routes'
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes
+  history: createWebHashHistory(),
+  routes
 })
 
-router.beforeEach( to =>{
+router.beforeEach(to => {
   // token的数据
   // access: "17cee9a8eee1c46917cee9a8eee181d1"
   // expires: 1636091279099
   // refresh: "17cee9a8b16185f817cee9a8b1616ba3"
   // type: "Bearer"
-    // @ts-ignore
-    const { expires = 0 } = localStorage.getItem( projectkey +'token') ?? {} //为啥不是个空字符串或者0
+  // @ts-ignore
+  const { expires = 0 } = localStorage.getItem(projectkey + 'token') ?? {} // 为啥不是个空字符串或者0
 
-    if (to.name === 'login' && expires > Date.now()) {
-          return to.query.redirect?.toString() ?? '/'
-    }
+  if (to.name === 'login' && expires > Date.now()) {
+    return to.query.redirect?.toString() ?? '/'
+  }
 
-
-    if (to.meta.requiresAuth === true && expires <= Date.now()) {
-      return { name: 'login', query: { redirect: to.fullPath } }
-    }
+  if (to.meta.requiresAuth === true && expires <= Date.now()) {
+    return { name: 'login', query: { redirect: to.fullPath } }
+  }
 })
 
-//目前不知道是啥用处，先抄着
+// 目前不知道是啥用处，先抄着
 router.afterEach(to => {
   // TODO: title from sfc custom block?
   // const current = to.matched[to.matched.length - 1].components.default

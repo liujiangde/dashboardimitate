@@ -2,7 +2,7 @@
 <template>
   <div class="data-overview-content">
       <div class="data-overview-content-l">
-        <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
+        <!-- <CountShow :title="'概况'"  :value ="state.activeKey"  :countList ="state.countList" :cycle="state.cycle">
             <template
               v-slot:menu ="slotprops">
               <n-menu v-model:value="slotprops.activeKey"
@@ -10,7 +10,7 @@
               mode="horizontal"
               :options="state.menuOptions" />
             </template>
-        </CountShow>
+        </CountShow> -->
         <Gaode class="amap-gaode" v-model:weath="weathdata">
         </Gaode>
       </div>
@@ -18,7 +18,7 @@
           <div class="data-overview-content-r-qrcode">
             <img ref="imgset" :src='state.imgSrc' class="data-overview-content-r-img" alt="" srcset="">
           </div>
-          <div class="data-overview-content-r-fall">
+          <div class="data-overview-content-r-fall" ref="weather" id="weather">
              <p>{{weathdata.city}}当日天气</p>
             <div>天气：{{weathdata.weather}}</div>
             <div >实时气温：{{weathdata.temperature}} &deg;C</div>
@@ -32,77 +32,74 @@
 </template>
 
 <script lang="ts"  setup >
-import Gaode from "@/views/datasource/gaode.vue";
-import CountShow  from "@/views/datasource/countShow.vue";
-import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
 
-const weathdata:any= ref({})
-
+import Gaode from 'views/datasource/gaode.vue'
+import CountShow from '@/views/datasource/countShow.vue'
+import { h, computed, reactive, onMounted, toRefs, nextTick, ref, defineComponent } from 'vue'
+const weathdata:any = ref({})
 const state = reactive({
-    imgSrc: 'https://image.shutterstock.com/image-photo/tree-frog-flying-laughing-animal-600w-752492104.jpg',
-    activeKey: 'one',
-    countList: {
-      first : 10,
-      second: 20,
-      third: 30,
-      four: 40
+  imgSrc: 'https://image.shutterstock.com/image-photo/tree-frog-flying-laughing-animal-600w-752492104.jpg',
+  activeKey: 'one',
+  countList: {
+    first: 10,
+    second: 20,
+    third: 30,
+    four: 40
+  },
+  cycle: 'a',
+  menuOptions: [
+    {
+      label: 'a',
+      key: 'one'
     },
-    cycle: 'a',
-   menuOptions : [
-  {
-    label: 'a',
-    key: 'one',
-  },
-  {
-    label: 'bb',
-    key: 'two',
-  },
-  {
-    label: 'ccc',
-    key: 'three',
-  },
-  {
-    label: 'dddd',
-    key: 'four',
-  }
-]
+    {
+      label: 'bb',
+      key: 'two'
+    },
+    {
+      label: 'ccc',
+      key: 'three'
+    },
+    {
+      label: 'dddd',
+      key: 'four'
+    }
+  ]
 })
 
-
 const setactiveKey = (params: String) => {
-    switch (params) {
-      case 'one':
-        state.activeKey = 'one'
-        state.cycle = '今日'
-        state.countList.first++
-        return
-      case 'two':
-        state.activeKey = 'two'
-        state.cycle = '昨日'
-        state.countList.second++
-        return
-      case 'three':
-        state.activeKey = 'three'
-        state.cycle = '近7天'
-        state.countList.third++
-        return
-      case 'four':
-        state.activeKey = 'four'
-        state.cycle = '近30天'
-        state.countList.four++
-        return
-      default:
-        state.activeKey = 'one'
-        state.cycle = '今日'
-        return
-    }
+  switch (params) {
+    case 'one':
+      state.activeKey = 'one'
+      state.cycle = '今日'
+      state.countList.first++
+      return
+    case 'two':
+      state.activeKey = 'two'
+      state.cycle = '昨日'
+      state.countList.second++
+      return
+    case 'three':
+      state.activeKey = 'three'
+      state.cycle = '近7天'
+      state.countList.third++
+      return
+    case 'four':
+      state.activeKey = 'four'
+      state.cycle = '近30天'
+      state.countList.four++
+      return
+    default:
+      state.activeKey = 'one'
+      state.cycle = '今日'
+  }
 }
-
 
 </script>
 <style lang="scss" scoped>
-  @import '/src/theme.scss';
 
+  @import '/src/theme.scss';
+  // @import '@/styles/index.scss';
   .data-overview-content{
     display: flex;
     width: 100%;
@@ -138,6 +135,7 @@ const setactiveKey = (params: String) => {
       .data-overview-content-r-fall{
         width: 100%;
         height: 100%;
+        color: $color;
       }
      }
   }

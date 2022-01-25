@@ -1,14 +1,14 @@
-
-import login from '../views/login.vue'
+import { RouteRecordRaw } from 'vue-router'
 import error from '../views/error.vue'
 import mainRoutes from './main-routes'
 
-export default [
+const routes: RouteRecordRaw[] = [
   {
     name: 'login',
     path: '/login',
-    component: () => import('../views/login.vue'),
+    component: () => import('../views/login/index.vue'),
     meta: {
+      // 页面tab页的标题
       title: 'Sign In'
     }
   },
@@ -21,5 +21,7 @@ export default [
     name: 'not-found',
     path: '/*',
     component: error
-  },
+  }
 ]
+
+export default routes

@@ -2,39 +2,44 @@
   <h1>达摩</h1>
   <p>项目介绍：无</p>
   <p>项目技术栈：ts vite vue3 vue-router naive-ui sass。</p>
-
+  <div>{{ count }}</div>
+    <!-- 还是可以拿到state数据 -->
+  <div>{{ $store.state.count }}</div>
   <n-button  @click=" handleButtonClick">
     留下足迹
   </n-button>
   <p>记录列表</p>
   <n-space vertical :size="12">
-    <n-data-table
+    <!-- <n-data-table
       ref="dataTableInstRef"
       :columns="columns"
       :data="data"
       :pagination="pagination"
-      />
+      /> -->
   </n-space>
   <!-- <AddUserAccountVue :dialogFormVisible = state.dialogFormVisible /> -->
 </template>
 
 <script lang="ts" setup>
-import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
+import { h, computed, reactive, onMounted, toRefs, nextTick, ref, defineComponent } from 'vue'
+import { useStore } from '../store/index'
+
 import { useDialog } from 'naive-ui'
+const store = useStore()
+const count = store.state.count
 const state = reactive({
   dialogFormVisible: false
 })
-const  form = {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: '',
-      };
-
+const form = {
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: ''
+}
 
       interface TableInfo {
         key: number,
@@ -46,10 +51,10 @@ const  form = {
         email: String
       }
 
-const   formLabelWidth= '120px';
+const formLabelWidth = '120px'
 // TODO:打开弹框
 const handleButtonClick = () => {
-    state.dialogFormVisible = !state.dialogFormVisible
+  state.dialogFormVisible = !state.dialogFormVisible
 }
 
 interface ColumnsLIst {
@@ -65,7 +70,7 @@ const columns = [
   {
     title: '年龄',
     key: 'age',
-    sorter:  (a:TableInfo , b:TableInfo) => a.age - b.age,
+    sorter: (a:TableInfo, b:TableInfo) => a.age - b.age
   },
   {
     title: '职业',
@@ -81,7 +86,7 @@ const columns = [
         value: 'rearend'
       }
     ],
-    render: (rowData:TableInfo) => { return rowData['job'] === 'frontend' ? '前端' : '后端'},
+    render: (rowData:TableInfo) => { return rowData.job === 'frontend' ? '前端' : '后端' },
 
     filter (value:String, row:TableInfo) {
       return row.job === value ? -1 : 0
@@ -91,7 +96,7 @@ const columns = [
     title: '性别',
     defaultSortOrder: false,
     key: 'gender',
-    render: (rowData:TableInfo) => { return rowData['gender'] === 'male' ? '男' : '女'},
+    render: (rowData:TableInfo) => { return rowData.gender === 'male' ? '男' : '女' },
     filterOptions: [
       {
         label: '男',
@@ -109,19 +114,18 @@ const columns = [
   {
     title: '技术栈',
     defaultSortOrder: false,
-    key: 'technologyStack',
+    key: 'technologyStack'
   },
   {
     title: '邮箱',
-    key: 'email',
+    key: 'email'
   },
   {
     title: '工作地',
-    key: 'workPosition',
+    key: 'workPosition'
   }
 ]
-const pagination = ref({ pageSize: 5 });
-
+const pagination = ref({ pageSize: 5 })
 
 const data = [
   {
@@ -163,8 +167,6 @@ const data = [
 ]
 
 </script>
-
-
 
 <style scoped>
 

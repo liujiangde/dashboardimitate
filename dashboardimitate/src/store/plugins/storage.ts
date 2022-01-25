@@ -1,5 +1,4 @@
 import { Plugin } from 'vuex'
-import store from '..'
 import { State } from '../state'
 import { storage } from '../../utils'
 

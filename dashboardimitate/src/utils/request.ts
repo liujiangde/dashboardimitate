@@ -1,9 +1,41 @@
-import { resolve } from 'path'
-import fs from 'fs'
-const axios = require('axios').default
+import axios, { AxiosRequestConfig } from 'axios'
+// import { useMessage } from 'naive-ui'
+// const message = useMessage()
 
-const instance = axios.create()
+const instance = axios.create({
+  baseURL: 'https://shop.fed.lagounews.com/api/admin/'
+})
+
 instance.defaults.timeout = 2500
+
+// 你可以在请求或响应被then或catch处理之前拦截它们
+
+// 请求拦截器
+// Add a request interceptor
+instance.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  // 通常会统一设置用户身份，token
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
+})
+
+// 响应拦截器
+// Add a response interceptor
+instance.interceptors.response.use(function (response) {
+  // Any status code that lie within the range of 2xx cause this function to trigger
+  // Do something with response data
+  // 统一处理接口响应错误，比如 token过期，无效，服务端异常
+  // eslint-disable-next-line no-debugger
+  // message.warning('请先登录')
+  return response
+}, function (error) {
+  // Any status codes that falls outside the range of 2xx cause this function to trigger
+  // Do something with response error
+
+  return Promise.reject(error)
+})
 
 // 允许在向服务器发送前，修改请求数据
 
@@ -180,51 +212,18 @@ instance.defaults.timeout = 2500
 //  decompress: true // 默认值
 // }
 
-const _get = () => {
-  return new Promise((resolve, reject) => {
-    const params = {
-      method: 'get',
-      url: '',
-      data: {}
-    }
-    instance.get(params)
-      .then((response) => {
-        // 处理成功情况
-        resolve(response)
-      })
-      .catch((error) => {
-        // 处理错误情况
-        if (error.response) {
-          // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          // 请求已经成功发起，但没有收到响应
-          // `error.request` 在浏览器中是 XMLHttpRequest 的实例，
-          // 而在node.js中是 http.ClientRequest 的实例
-          console.log(error.request)
-        } else {
-          // 发送请求时出了点问题
-          console.log('Error', error.message)
-        }
-        console.log('config', error.config)
-        console.log('error', error.toJSON())
+// 在 node.js 用GET请求获取远程图片
+// axios({
+//   method: 'get',
+//   url: 'http://bit.ly/2mTM3nY',
+//   responseType: 'stream'
+// })
+//   .then(function (response) {
+//     response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+//   })
 
-        reject(error)
-      })
-      .then(function () {
-        // 总是会执行
-      })
+export default <T = any> (config: AxiosRequestConfig) => {
+  return instance(config).then((res) => {
+    return (res.data.data || res.data) as T
   })
 }
-
-// 在 node.js 用GET请求获取远程图片
-axios({
-  method: 'get',
-  url: 'http://bit.ly/2mTM3nY',
-  responseType: 'stream'
-})
-  .then(function (response) {
-    response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-  })

@@ -10,7 +10,16 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    // 一个炸弹
+    "isolatedModules": false,
+    "types": ["vite/client"],
     "lib": ["esnext", "dom"],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "baseUrl": "./",
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

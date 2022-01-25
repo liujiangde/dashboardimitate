@@ -8,17 +8,20 @@ import 'vite/client'
 
 declare module 'vue' {
   // global components
+  // eslint-disable-next-line no-unused-vars
   type GlobalComponents = typeof Naive & {
     RouterLink: typeof RouterLink
     RouterView: typeof RouterView
   }
 
+  // eslint-disable-next-line no-unused-vars
   interface ComponentCustomProperties {
     $store: Store<State>
   }
 }
 
 declare module 'vue-router' {
+  // eslint-disable-next-line no-unused-vars
   interface RouteMeta {
     title?: string
     requiresAuth?: boolean

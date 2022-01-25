@@ -1,15 +1,27 @@
-import { createStore } from 'vuex'
+import { InjectionKey } from 'vue'
+import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
-import state from './state'
-import getters from './getters'
-import mutations from './mutations'
-import actions from './actions'
-// import modules from './modules'
-// import plugins from './plugins'
+export interface State {
+  count: number
+}
+// 定义 injection key
+export const key: InjectionKey<Store<State>> = Symbol('store')
 
-const strict = import.meta.env.DEV
+// 创建一个新的 store 实例
+export const store = createStore<State>({
+  state () {
+    return {
+      count: 0
+    }
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
 
-const store = createStore({ state, getters, mutations, actions, strict })
-
-export type { State } from './state'
-export default store
+// 定义自己的 `useStore` 组合式函数
+export function useStore () {
+  return baseUseStore(key)
+}

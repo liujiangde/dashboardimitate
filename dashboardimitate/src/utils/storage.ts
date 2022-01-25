@@ -1,5 +1,6 @@
 import { projectkey } from './constpool'
 
+// eslint-disable-next-line no-unused-vars
 const getLocal = <T> (key: string): T => {
   const value = localStorage.getItem(key) || ''
   try {
