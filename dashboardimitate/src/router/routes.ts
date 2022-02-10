@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/login/index.vue'),
     meta: {
       // 页面tab页的标题
-      title: 'Sign In'
+      title: '登陆页面'
     }
   },
   {

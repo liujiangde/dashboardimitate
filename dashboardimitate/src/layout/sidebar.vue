@@ -16,7 +16,7 @@
       </n-layout-sider>
 </template>
 <script lang= "ts"  setup >
-import { h, computed,reactive, onMounted, toRefs, nextTick, ref,  defineComponent} from 'vue'
+import { h, computed, reactive, onMounted, toRefs, nextTick, ref, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import { NIcon } from 'naive-ui'
 import {
@@ -28,8 +28,8 @@ import {
 function renderIcon (icon:any) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
-const inverted = ref(false);
-const collapsed= ref(false);
+const inverted = ref(false)
+const collapsed = ref(false)
 
 const menuOptions = [
   {
@@ -45,7 +45,7 @@ const menuOptions = [
     children: [
       {
         // label: '数据总览',
-         label: () => h(RouterLink, { to: '/datasource' }, { default: () => '搞搞高德' }),
+        label: () => h(RouterLink, { to: '/datasource' }, { default: () => '搞搞高德' }),
         key: 'pinball-1973-datasource'
       },
       {
@@ -62,74 +62,36 @@ const menuOptions = [
   },
   {
     label: '商品',
-    key: 'a-wild-sheep-chase',
-    icon: renderIcon(BookIcon),
+    key: 'product',
+    icon: renderIcon(WineIcon),
     children: [
       {
-        label: '商品列表',
-        key: 'a-wild-sheep-chase-thing'
+        // label: '数据总览',
+        label: () => h(RouterLink, { to: '/product/list' }, { default: () => '商品列表' }),
+        key: 'product_list'
       },
       {
-        label: '商品分类',
-        key: 'a-wild-sheep-chase-type'
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/product/classify' }, { default: () => '商品分类' }),
+        key: 'product_classity'
       },
       {
-        label: '集团分组',
-        key: 'a-wild-sheep-chase-group'
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/product/add' }, { default: () => '添加商品' }),
+        key: 'product_add'
       },
       {
-        label: '回收站',
-        key: 'a-wild-sheep-chase-laji'
-      },
-      {
-        label: '商品标签',
-        key: 'a-wild-sheep-chase-tag'
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/product/attr' }, { default: () => '商品规格' }),
+        key: 'product_attr'
+      }, {
+        // label: '升级日志',
+        label: () => h(RouterLink, { to: '/product/reply' }, { default: () => '商品评论' }),
+        key: 'product_reply'
       }
     ]
-  },
-  {
-    label: '订单',
-    key: 'order',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: '订单管理',
-        key: 'order-manager',
-      },
-      {
-        label: '评价管理',
-        key: 'order-later',
-      },
-      {
-        label: '订单配送',
-        key: 'order-translate',
-      }
-    ]
-  },
-  {
-    label: '设置',
-    key: 'setting',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: '权限设置',
-        key: 'setting-authority',
-      },
-      {
-        label: '应用基本设置',
-        key: 'setting-base',
-      },
-      {
-        label: '地址库',
-        key: 'setting-address',
-      }
-    ]
-  },
-  {
-    label: '操作记录',
-    key: 'oprate',
-    icon: renderIcon(BookIcon),
   }
+
 ]
 
 </script>

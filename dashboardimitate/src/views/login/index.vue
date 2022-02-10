@@ -58,13 +58,7 @@ const getVertify = async () => {
 }
 
 onMounted(() => {
-  // getLoginInfo().then(res => {
-  //   a.value = res.slide
-  // })
   getVertify()
-  getVertifyCode().then(res => {
-
-  })
 })
 
 </script>

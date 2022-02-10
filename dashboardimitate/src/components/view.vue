@@ -6,6 +6,6 @@
 import { useLoadingBar } from 'naive-ui'
 import router from '../router/index.vue'
 
-const useLoading =  useLoadingBar()
+const useLoading = useLoadingBar()
 
 </script>

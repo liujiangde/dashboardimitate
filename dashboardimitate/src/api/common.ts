@@ -1,6 +1,7 @@
 /**
  * 公共基础接口
  */
+
 import instance from '@/utils/request'
 import { ILoginInfo } from './types/common'
 

@@ -9,6 +9,6 @@
 
 <script lang="ts" setup>
 
-import WebSock from "@/views/update/websocket.vue"
+import WebSock from '@/views/update/websocket.vue'
 
 </script>

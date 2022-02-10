@@ -28,10 +28,15 @@
 </template>
 
 <script  lang= 'ts' setup>
-import { defineComponent } from 'vue'
 import { Albums } from '@vicons/ionicons5'
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+console.log(route, router)
+
 const dang = () => {
-  console.log(location);
+  console.log(location)
   alert('1')
 }
 </script>
