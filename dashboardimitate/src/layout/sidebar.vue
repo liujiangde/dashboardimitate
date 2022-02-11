@@ -2,9 +2,9 @@
    <n-layout-sider
         :collapsed-width="120"
         :width="240"
-        show-trigger="bar"
         content-style="padding: 24px;"
         bordered
+        :collapsed="store.state.isSollapsed"
         collapse-mode="width"
         :native-scrollbar="false"
       >
@@ -16,20 +16,19 @@
       </n-layout-sider>
 </template>
 <script lang= "ts"  setup >
-import { h, computed, reactive, onMounted, toRefs, nextTick, ref, defineComponent } from 'vue'
+import { h } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useStore } from '@/store/index'
 import { NIcon } from 'naive-ui'
 import {
   BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
   WineOutline as WineIcon
 } from '@vicons/ionicons5'
 
 function renderIcon (icon:any) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
-const inverted = ref(false)
-const collapsed = ref(false)
+const store = useStore()
 
 const menuOptions = [
   {

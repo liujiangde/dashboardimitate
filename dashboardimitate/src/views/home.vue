@@ -2,6 +2,108 @@
   <h1>达摩</h1>
   <p>项目介绍：无</p>
   <p>项目技术栈：ts vite vue3 vue-router naive-ui sass。</p>
+  <span>
+    {
+    // 默认配置
+    "git.ignoreMissingGitWarning": true,
+    "editor.fontSize": 13,
+    // "editor.wordWrap": "on",
+    "editor.fontFamily": "Fira Code",
+    "terminal.integrated.fontFamily": "monospace",
+    // tab 大小为2个空格
+    "editor.tabSize": 4,
+    // 100 列后换行
+    "editor.wordWrapColumn": 100,
+    // 保存时格式化
+    "editor.formatOnSave": false,
+    // 开启 vscode 文件路径导航
+    "breadcrumbs.enabled": true,
+    // prettier 设置语句末尾不加分号
+    "prettier.semi": false,
+    // prettier 设置强制单引号
+    "prettier.singleQuote": true,
+    // 选择 vue 文件中 template 的格式化工具
+    "vetur.format.defaultFormatter.html": "prettyhtml",
+    // 显示 markdown 中英文切换时产生的特殊字符
+    "editor.renderControlCharacters": true,
+    // 设置 eslint 保存时自动修复
+    // "eslint.autoFixOnSave": true,
+    // eslint 检测文件类型
+    // "eslint.validate": [
+    //   "javascript",
+    //   "javascriptreact",
+    //   {
+    //     "language": "html",
+    //     "autoFix": false
+    //   },
+    //   {
+    //     "language": "vue",
+    //     "autoFix": true
+    //   }
+    // ],
+    // vetur 的自定义设置
+    // "vetur.format.defaultFormatterOptions": {
+    //   "prettier": {
+    //     "singleQuote": true,
+    //     "semi": false
+    //   }
+    // },
+    // "workbench.iconTheme": "material-icon-theme",
+    "sync.gist": "eafbdbac1d5a22c6879e318ca74ae3a5",
+    "explorer.confirmDelete": false,
+    "sync.forceUpload": true,
+    "window.zoomLevel": 1,
+    "fileheader.customMade": {    //此为头部注释
+      "Description": "new file",
+      "Autor": "liu",
+      "Date": "Do not edit",
+      "LastEditors": "zhan",
+      "LastEditTime": "Do not edit"
+    },
+  "fileheader.cursorMode": {  //此为函数注释
+      "description":"",
+      "param": "",
+      "return": "",
+      "author":"liu"
+    },
+    "backgroundCover.imagePath": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568705166&di=54fe032a482d9768e3694a525d501470&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F08%2F2018050884403_CVAr5.jpeg",
+    "backgroundCover.opacity": 0.4,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.rendererType": "dom",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "git.enableSmartCommit": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[html]": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": false
+      }
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "git.autofetch": true,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+      "*": false,
+      "yaml": false,
+      "plaintext": true,
+      "markdown": false
+    },
+    "volar.icon.finder": true,
+    "volar.icon.splitEditors": false,
+    "volar.formatting.printWidth": 130,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "eslint.format.enable": true,
+    "[vue]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "explorer.compactFolders": false
+  }
+
+  </span>
   <div>{{ count }}</div>
     <!-- 还是可以拿到state数据 -->
   <div>{{ $store.state.count }}</div>

@@ -1,9 +1,7 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import { State } from './state'
 
-export interface State {
-  count: number
-}
 // 定义 injection key
 export const key: InjectionKey<Store<State>> = Symbol('store')
 
@@ -11,12 +9,16 @@ export const key: InjectionKey<Store<State>> = Symbol('store')
 export const store = createStore<State>({
   state () {
     return {
-      count: 0
+      count: 0,
+      isSollapsed: false
     }
   },
   mutations: {
     increment (state) {
       state.count++
+    },
+    setSollapsed (state, flag) {
+      state.isSollapsed = flag
     }
   }
 })

@@ -1,3 +1,100 @@
 {
-    "explorer.compactFolders": false
+  // 默认配置
+  "git.ignoreMissingGitWarning": true,
+  "editor.fontSize": 13,
+  "editor.fontFamily": "Fira Code",
+  "terminal.integrated.fontFamily": "monospace",
+  // 100 列后换行
+  "editor.wordWrapColumn": 100,
+    // 文件自动保存
+    // onFocusChange => 当前文件失去焦点后自动保存
+    // onWindowChange => 需要当前 VScode 窗口失去焦点才会自动保存
+    // afterDelay => 与 files.autoSaveDelay 配置联动，也就是在间隔多少毫秒自动保存，默认「1000毫秒」，有个小细节，如果配置了保存格式化代码，这个配置下自动保存不会格式化代码
+  "files.autoSave": "onWindowChange",
+  "files.autoSaveDelay": 2000,
+  // 保存时格式化
+  "editor.formatOnSave": false,
+  // 开启 vscode 文件路径导航
+  "breadcrumbs.enabled": true,
+  // prettier 设置语句末尾不加分号
+  "prettier.semi": false,
+  // prettier 设置强制单引号
+  "prettier.singleQuote": true,
+  // 显示 markdown 中英文切换时产生的特殊字符
+  "editor.renderControlCharacters": true,
+  // 设置 eslint 保存时自动修复
+  // "eslint.autoFixOnSave": true,
+  // eslint 检测文件类型
+  // "eslint.validate": [
+  //   "javascript",
+  //   "javascriptreact",
+  //   {
+  //     "language": "html",
+  //     "autoFix": false
+  //   },
+  //   {
+  //     "language": "vue",
+  //     "autoFix": true
+  //   }
+  // ],
+  // vetur 的自定义设置
+  // "vetur.format.defaultFormatterOptions": {
+  //   "prettier": {
+  //     "singleQuote": true,
+  //     "semi": false
+  //   }
+  // },
+  // "workbench.iconTheme": "material-icon-theme",
+  "sync.gist": "eafbdbac1d5a22c6879e318ca74ae3a5",
+  "explorer.confirmDelete": false,
+  "sync.forceUpload": true,
+  "window.zoomLevel": 1,
+  "fileheader.customMade": {    //此为头部注释
+    "Description": "new file",
+    "Autor": "liu",
+    "Date": "Do not edit",
+    "LastEditors": "zhan",
+    "LastEditTime": "Do not edit"
+  },
+"fileheader.cursorMode": {  //此为函数注释
+    "description":"",
+    "param": "",
+    "return": "",
+    "author":"liu"
+  },
+  "backgroundCover.imagePath": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568705166&di=54fe032a482d9768e3694a525d501470&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F08%2F2018050884403_CVAr5.jpeg",
+  "backgroundCover.opacity": 0.4,
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.rendererType": "dom",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "git.enableSmartCommit": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[html]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": false
+    }
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.autofetch": true,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": false,
+    "yaml": false,
+    "plaintext": true,
+    "markdown": false
+  },
+  "volar.icon.finder": true,
+  "volar.icon.splitEditors": false,
+  "volar.formatting.printWidth": 130,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "eslint.format.enable": true,
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "explorer.compactFolders": false
 }

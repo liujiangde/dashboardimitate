@@ -21,7 +21,7 @@ const testroutes: RouteRecordRaw[] = [
     name: 'home',
     path: '/home',
     meta: {
-      title: '家'
+      title: '首页'
     },
     component: () => import('@/views/home.vue')
   },
@@ -51,7 +51,7 @@ const testroutes: RouteRecordRaw[] = [
     name: 'three',
     path: '/three',
     meta: {
-      title: 'websocket'
+      title: 'three'
     },
     component: () => import('@/views/three.vue')
   }

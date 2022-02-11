@@ -1,20 +1,11 @@
-interface Session {
-  id?:String
-  username?: string
-  name?: string
-  avatar?: string
-}
-export interface State{
-  name: string
-  session: Session
-  sidebarCollapsed: boolean
-  count: number
+
+export interface State {
+  count: number,
+  isSollapsed: boolean,
 }
 const state: State = {
-  name: '',
-  session: {},
-  sidebarCollapsed: false,
-  count: 0
+  count: 0,
+  isSollapsed: false
 }
 
-export default state;
+export default state

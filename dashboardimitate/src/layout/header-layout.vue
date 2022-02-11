@@ -1,18 +1,20 @@
 <template>
   <n-layout-header bordered
     class = 'l-layout-header'>
-    <n-breadcrumb>
-      <n-breadcrumb-item href="/#/layout/update">
-        <n-icon><Albums /></n-icon>
-        home
+    <n-space justify="space-around" class="l-account-position">
+      <n-icon size="20" >
+        <FolderOpenSharp @click="$store.commit('setSollapsed',!$store.state.isSollapsed)" />
+      </n-icon>
+      <n-breadcrumb>
+      <n-breadcrumb-item
+        v-for="item in routes"
+        :key="item.path"
+      >
+      {{  item.meta.title }}
       </n-breadcrumb-item>
-      <n-breadcrumb-item href="/">
-        <n-icon><Albums /></n-icon>da
-      </n-breadcrumb-item>
-      <n-breadcrumb-item href="#">
-        <n-icon><Albums /></n-icon>hs
-      </n-breadcrumb-item>
+
     </n-breadcrumb>
+    </n-space>
     <n-space justify="space-around" class="l-account-position">
       <n-button  text @click="dang">
         <n-icon size="20" :depth="2" ><Albums /></n-icon>
@@ -28,13 +30,15 @@
 </template>
 
 <script  lang= 'ts' setup>
-import { Albums } from '@vicons/ionicons5'
-import { useRoute, useRouter } from 'vue-router'
+import { Albums, FolderOpenSharp } from '@vicons/ionicons5'
+import { computed } from 'vue'
 
-const route = useRoute()
+import { useRouter } from 'vue-router'
 const router = useRouter()
-console.log(route, router)
-
+console.log(router.currentRoute.value.matched)
+const routes = computed(() => {
+  return router.currentRoute.value.matched.filter(item => item.meta.title)
+})
 const dang = () => {
   console.log(location)
   alert('1')

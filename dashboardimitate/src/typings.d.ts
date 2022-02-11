@@ -2,7 +2,7 @@
 import { Store } from 'vuex'
 import { RouterLink, RouterView } from 'vue-router'
 import * as Naive from 'naive-ui/es/components'
-import { State } from './store'
+import { State } from './store/state'
 // for vite inject env
 import 'vite/client'
 
