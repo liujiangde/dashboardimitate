@@ -16,13 +16,14 @@
     </n-breadcrumb>
     </n-space>
     <n-space justify="space-around" class="l-account-position">
-      <n-button  text @click="dang">
+      <n-button  text >
         <n-icon size="20" :depth="2" ><Albums /></n-icon>
       </n-button>
-      <n-button  text @click="dang">
+      <n-button  text @click="toggleFullScreen">
         <n-icon size="20" :depth="2"><Albums /></n-icon>
+        {{"全屏"}}
       </n-button>
-      <n-button   text @click="dang">
+      <n-button   text>
         <img src="@/assets/account.svg" style="width:15px;height:15px;" alt="" srcset="">
       </n-button>
     </n-space>
@@ -39,9 +40,14 @@ console.log(router.currentRoute.value.matched)
 const routes = computed(() => {
   return router.currentRoute.value.matched.filter(item => item.meta.title)
 })
-const dang = () => {
-  console.log(location)
-  alert('1')
+const toggleFullScreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { projectkey } from '../utils/constpool'
 import routes from './routes'
+// 进度条功能
+import NProgress from 'nprogress/nprogress.js'
+import 'nprogress/nprogress.css'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -8,6 +11,8 @@ const router = createRouter({
 })
 
 router.beforeEach(to => {
+  NProgress.start()
+
   // token的数据
   // access: "17cee9a8eee1c46917cee9a8eee181d1"
   // expires: 1636091279099
@@ -27,6 +32,7 @@ router.beforeEach(to => {
 
 // 目前不知道是啥用处，先抄着
 router.afterEach(to => {
+  NProgress.done()
   // TODO: title from sfc custom block?
   // const current = to.matched[to.matched.length - 1].components.default
   // const title = current.title ?? current.name

@@ -6,6 +6,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
   css: {
     preprocessorOptions: {
       scss: {
@@ -30,6 +31,9 @@ export default defineConfig({
         }
       }
     }
+  },
+  build: {
+    sourcemap: true
   },
   resolve: {
     alias: {
