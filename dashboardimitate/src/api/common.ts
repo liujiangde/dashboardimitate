@@ -11,14 +11,17 @@ export const getLogin = () => {
     url: '/login'
   })
 }
-
 export const getVertifyCode = () => {
   return instance<Blob>({
     method: 'GET',
-    url: '/captcha_pro'
+    url: '/captcha_pro',
+    params: {
+      stamp: Date.now()
+    },
+    // TypeError: Failed to execute 'createObjectURL' on 'URL': Overload resolution failed.
+    responseType: 'blob' // 请求获取图片数据
   })
 }
-
 // 获取logo
 export const getLoginInfo = () => {
   return instance<ILoginInfo>({
