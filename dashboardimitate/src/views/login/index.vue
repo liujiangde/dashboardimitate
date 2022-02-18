@@ -1,133 +1,196 @@
-/* eslint-disable no-unused-vars */
-<!-- 登陆模块 -->
 <template>
-<div class="container">
-    <div class="login-contain">
-      <n-form
-        label-placement="left"
-        :label-width="80"
-        :model="state.formValue"
-        size="medium"
-        :rules="state.rules"
-        ref="formRef" >
-        <n-form-item path="name" label="姓名">
-         <n-input
-          v-model:value="state.formValue.user.name"
-          @keydown.enter.prevent
-          placeholder="请输入姓名"
-          />
+  <div class="login-container">
+    <el-form
+      class="login-form"
+      :rules="rules"
+      ref="form"
+      :model="user"
+      size="medium"
+      @submit.prevent="handleSubmit"
+    >
+      <div class="login-form__header">
 
-        </n-form-item>
-         <n-form-item label="密码" path="password">
-          <n-input
-          v-model:value="state.formValue.user.password"
-            placeholder="请输入密码"
-          />
-        </n-form-item>
-        <n-form-item label="验证码" path="vertify">
-          <n-input
-            v-model:value="state.formValue.user.vertify"
+      </div>
+      <el-form-item prop="account">
+        <el-input
+          v-model="user.account"
+          placeholder="请输入用户名"
+        >
+          <template #prefix>
+            <i class="el-input__icon el-icon-user" />
+          </template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="pwd">
+        <el-input
+          v-model="user.pwd"
+          type="password"
+          placeholder="请输入密码"
+        >
+          <template #prefix>
+            <i class="el-input__icon el-icon-lock" />
+          </template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="imgcode">
+        <div class="imgcode-wrap">
+          <el-input
+            v-model="user.imgcode"
             placeholder="请输入验证码"
-          />
-          <img class="img-contain"
-          :src="imgSrc"
-          alt=""
-          srcset="">
-        </n-form-item>
-          <n-button type="success" @click="handleValidateClick"  attr-type="button">
-            登陆
-          </n-button>
-      </n-form>
-    </div>
-</div>
-
+          >
+            <template #prefix>
+              <i class="el-input__icon el-icon-key" />
+            </template>
+          </el-input>
+          <img
+            class="imgcode"
+            alt="验证码"
+            :src="captchaSrc"
+            @click="loadCaptcha"
+          >
+        </div>
+      </el-form-item>
+      <el-form-item>
+        <el-button
+          class="submit-button"
+          type="primary"
+          :loading="loading"
+          native-type="submit"
+        >
+          登录
+        </el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
-<script lang='ts' setup >
-import { getVertifyCode, getLoginInfo } from '@/api/common'
-import { ILoginInfo } from '@/api/types/common'
-import { useMessage } from 'naive-ui'
+<script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
-const message = useMessage()
+import { useRouter, useRoute } from 'vue-router'
+import { getVertifyCode, getLoginInfo } from '@/api/common'
+// import { getVertifyCode, getLoginInfo } from '@/api/common'
 
-const formRef = ref()
-const imgSrc = ref('')
+import type { IElForm, IFormRule } from '@/types/element-plus'
+import { store } from '@/store'
+import { ElMessage } from 'element-plus'
 
-const state = reactive({
-  size: 'medium',
-  formValue: {
-    user: {
-      name: '',
-      password: '',
-      vertify: ''
-    }
-  },
-  rules: {
-    user: {
-      name: {
-        required: true,
-        message: '请输入姓名',
-        trigger: 'blur'
-      },
-      password: {
-        required: true,
-        message: '请输入密码',
-        trigger: ['input', 'blur']
-      },
-      vertify: {
-        required: true,
-        message: '请输入验证码',
-        trigger: ['input', 'blur']
-      }
-    }
-  }
+const router = useRouter()
+const route = useRoute()
+const form = ref<IElForm | null>(null)
+const captchaSrc = ref('')
+const user = reactive({
+  account: 'admin',
+  pwd: '123456',
+  imgcode: ''
+})
+const loading = ref(false)
+const rules = ref<IFormRule>({
+  account: [
+    { required: true, message: '请输入账号', trigger: 'change' }
+  ],
+  pwd: [
+    { required: true, message: '请输入密码', trigger: 'change' }
+  ],
+  imgcode: [
+    { required: true, message: '请输入验证码', trigger: 'change' }
+  ]
 })
 
-const getVertify = async () => {
-  const resp = await getVertifyCode()
-  imgSrc.value = URL.createObjectURL(resp)
-}
-
-const handleValidateClick = (e) => {
-  e.preventDefault()
-  const messageReactive = message.loading('Verifying', {
-    duration: 0
-  })
-  formRef.value.validate((errors) => {
-    if (!errors) {
-      message.success('成功')
-    } else {
-      message.error('失败')
-      console.log('errors', errors)
-    }
-    messageReactive.destroy()
-  })
-}
 onMounted(() => {
-  getVertify()
+  loadCaptcha()
 })
+
+const loadCaptcha = async () => {
+  const data = await getVertifyCode()
+  captchaSrc.value = URL.createObjectURL(data)
+}
+
+const handleSubmit = async () => {
+  // 表单验证
+  const valid = await form.value?.validate()
+
+  if (!valid) {
+    return false
+  }
+
+  // 验证通过，展示 loading
+  loading.value = true
+
+  // 请求提交
+  // const data = await getLoginInfo(user).catch(() => {
+  //   loadCaptcha() // 刷新验证码
+  // }).finally(() => {
+  //   loading.value = false
+  // })
+
+  // if (!data) return
+
+  ElMessage.success('登录成功')
+
+  // 存储登录用户信息
+  // store.commit('setUser', {
+  //   ...data.user_info,
+  //   token: data.token
+  // })
+
+  // store.commit('setMenus', data.menus)
+
+  // 跳转回原来页面
+  let redirect = route.query.redirect
+  if (typeof redirect !== 'string') {
+    redirect = '/'
+  }
+  router.replace(redirect)
+}
 
 </script>
-<style scoped lang="scss">
-.container{
-  width: 100vw;
+
+<style lang="scss" scoped>
+.login-container {
+  min-width: 400px;
   height: 100vh;
-  background-color: #2d3a4b;
   display: flex;
-  align-items: center;
   justify-content: center;
-  .login-contain{
-    width: 400px;
-    height: 300px;
-    background: #fff;
-    padding: 30px 30px;
-    border-radius: 6px;
-  }
-  .img-contain{
-    margin-left: 20px;
-    width: 106px;
-    height: 33px;
-  }
+  align-items: center;
+  background-color: #2d3a4b;
 }
 
+.login-form {
+  padding: 30px;
+  border-radius: 6px;
+  background: #fff;
+  min-width: 350px;
+  .login-form__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+
+  .el-form-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .login__form-title {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+
+  .login-logo {
+    width: 271px;
+    height: 74px;
+  }
+  .imgcode-wrap {
+    display: flex;
+    align-items: center;
+    .imgcode {
+      height: 37px;
+    }
+  }
+}
 </style>
