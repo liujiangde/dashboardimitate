@@ -9,6 +9,8 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "resolveJsonModule": true,
+    // 打包element-plus组件报错
+    "skipLibCheck": true, // 针对element-puls的ts打包校验
     "esModuleInterop": true,
     // 一个炸弹
     "isolatedModules": false,
