@@ -10,7 +10,12 @@ export const store = createStore<State>({
   state () {
     return {
       count: 0,
-      isSollapsed: false
+      isSollapsed: false,
+      user: {
+        id: 0,
+        account: '',
+        headPic: ''
+      }
     }
   },
   mutations: {
@@ -19,6 +24,9 @@ export const store = createStore<State>({
     },
     setSollapsed (state, flag) {
       state.isSollapsed = flag
+    },
+    setUser (state, user) {
+      state.user = user
     }
   }
 })

@@ -8,6 +8,7 @@
       size="medium"
       @submit.prevent="handleSubmit"
     >
+
       <div class="login-form__header">
 
       </div>
@@ -67,7 +68,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { getVertifyCode, getLoginInfo } from '@/api/common'
+import { getVertifyCode, login } from '@/api/common'
 // import { getVertifyCode, getLoginInfo } from '@/api/common'
 
 import type { IElForm, IFormRule } from '@/types/element-plus'
@@ -108,32 +109,29 @@ const loadCaptcha = async () => {
 const handleSubmit = async () => {
   // 表单验证
   const valid = await form.value?.validate()
-
   if (!valid) {
     return false
   }
-
   // 验证通过，展示 loading
   loading.value = true
-
   // 请求提交
-  // const data = await getLoginInfo(user).catch(() => {
-  //   loadCaptcha() // 刷新验证码
-  // }).finally(() => {
-  //   loading.value = false
-  // })
+  const data = await login(user)
 
-  // if (!data) return
-
+    .catch(() => {
+      loadCaptcha() // 刷新验证码
+    }).finally(() => {
+      loading.value = false
+    })
+  if (!data) return
   ElMessage.success('登录成功')
 
   // 存储登录用户信息
-  // store.commit('setUser', {
-  //   ...data.user_info,
-  //   token: data.token
-  // })
+  store.commit('setUser', {
+    ...data.user_info,
+    token: data.token
+  })
 
-  // store.commit('setMenus', data.menus)
+  store.commit('setMenus', data.menus)
 
   // 跳转回原来页面
   let redirect = route.query.redirect
@@ -154,7 +152,6 @@ const handleSubmit = async () => {
   align-items: center;
   background-color: #2d3a4b;
 }
-
 .login-form {
   padding: 30px;
   border-radius: 6px;
@@ -166,21 +163,17 @@ const handleSubmit = async () => {
     align-items: center;
     padding-bottom: 30px;
   }
-
   .el-form-item:last-child {
     margin-bottom: 0;
   }
-
   .login__form-title {
     display: flex;
     justify-content: center;
     color: #fff;
   }
-
   .submit-button {
     width: 100%;
   }
-
   .login-logo {
     width: 271px;
     height: 74px;

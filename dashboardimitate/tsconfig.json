@@ -9,6 +9,7 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "resolveJsonModule": true,
+    // 忽略所有的声明文件（ *.d.ts）的类型检查。
     // 打包element-plus组件报错
     "skipLibCheck": true, // 针对element-puls的ts打包校验
     "esModuleInterop": true,

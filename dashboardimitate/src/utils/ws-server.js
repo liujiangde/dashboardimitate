@@ -25,7 +25,6 @@ wsServer.on('request', function (request) {
   conArr.push(connection)
   // 监听消息事件
   connection.on('message', function (msg) {
-    console.log(msg)
     // 循环连接池，推送广播消息至客户端
     for (let i = 0; i < conArr.length; i++) {
       conArr[i].send(msg.utf8Data)

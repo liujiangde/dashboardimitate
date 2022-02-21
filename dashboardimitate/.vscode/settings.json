@@ -93,8 +93,8 @@
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "eslint.format.enable": true,
-  "[vue]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
+  // "[vue]": {
+  //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  // },
   "explorer.compactFolders": false
 }

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
-// import { useMessage } from 'naive-ui'
-// const message = useMessage()
+import { useMessage } from 'naive-ui'
+const message = useMessage()
 
 const instance = axios.create({
   baseURL: 'https://shop.fed.lagounews.com/api/admin/'
@@ -9,12 +9,12 @@ const instance = axios.create({
 instance.defaults.timeout = 2500
 
 // 你可以在请求或响应被then或catch处理之前拦截它们
-
 // 请求拦截器
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   // 通常会统一设置用户身份，token
+
   return config
 }, function (error) {
   // Do something with request error
@@ -24,11 +24,20 @@ instance.interceptors.request.use(function (config) {
 // 响应拦截器
 // Add a response interceptor
 instance.interceptors.response.use(function (response) {
+  const data = response.data
+
+  if (data.status && data.status !== 200) {
+    alert('接口异常')
+
+    return Promise.reject(response)
+  }
+
   // Any status code that lie within the range of 2xx cause this function to trigger
   // Do something with response data
   // 统一处理接口响应错误，比如 token过期，无效，服务端异常
   // eslint-disable-next-line no-debugger
   // message.warning('请先登录')
+
   return response
 }, function (error) {
   // Any status codes that falls outside the range of 2xx cause this function to trigger

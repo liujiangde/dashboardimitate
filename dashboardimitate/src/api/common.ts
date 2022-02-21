@@ -3,7 +3,7 @@
  */
 
 import instance from '@/utils/request'
-import { ILoginInfo } from './types/common'
+import { ILoginResponse } from './types/common'
 
 export const getLogin = () => {
   return instance({
@@ -23,9 +23,14 @@ export const getVertifyCode = () => {
   })
 }
 // 获取logo
-export const getLoginInfo = () => {
-  return instance<ILoginInfo>({
-    method: 'GET',
-    url: '/login/info'
+export const login = (data: {
+  account: string,
+  pwd: string,
+  imgcode: string
+}) => {
+  return instance<ILoginResponse>({
+    method: 'POST',
+    url: '/login',
+    data
   })
 }
