@@ -34,3 +34,10 @@ export const login = (data: {
     data
   })
 }
+
+export const logout = () => {
+  return instance<ILoginResponse>({
+    method: 'GET',
+    url: '/setting/admin/logout'
+  })
+}

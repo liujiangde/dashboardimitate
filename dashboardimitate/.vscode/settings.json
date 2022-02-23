@@ -96,5 +96,7 @@
   // "[vue]": {
   //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   // },
+  //autoFix默认开启，只需输入字符串数组即可
+  "eslint.validate": ["vue", "html"],
   "explorer.compactFolders": false
 }

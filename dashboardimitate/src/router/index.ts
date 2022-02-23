@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { projectkey } from '../utils/constpool'
 import routes from './routes'
+import { store } from '@/store'
 // 进度条功能
 import NProgress from 'nprogress/nprogress.js'
 import 'nprogress/nprogress.css'
@@ -12,21 +13,15 @@ const router = createRouter({
 
 router.beforeEach(to => {
   NProgress.start()
-
-  // token的数据
-  // access: "17cee9a8eee1c46917cee9a8eee181d1"
-  // expires: 1636091279099
-  // refresh: "17cee9a8b16185f817cee9a8b1616ba3"
-  // type: "Bearer"
   // @ts-ignore
-  const { expires = 0 } = localStorage.getItem(projectkey + 'token') ?? {} // 为啥不是个空字符串或者0
+  // const { expires = 0 } = localStorage.getItem(projectkey + 'token') ?? {} // 为啥不是个空字符串或者0
+  // if (to.name === 'login' && expires > Date.now()) {
+  //   return to.query.redirect?.toString() ?? '/'
+  // }
+  debugger
 
-  if (to.name === 'login' && expires > Date.now()) {
-    return to.query.redirect?.toString() ?? '/'
-  }
-
-  if (to.meta.requiresAuth === true && expires <= Date.now()) {
-    return { name: 'login', query: { redirect: to.fullPath } }
+  if (to.meta.requireAuth === true && !store.state.user) {
+    return { path: 'login', query: { redirect: to.fullPath } }
   }
 })
 

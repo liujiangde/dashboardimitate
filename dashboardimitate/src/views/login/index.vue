@@ -131,7 +131,7 @@ const handleSubmit = async () => {
     token: data.token
   })
 
-  store.commit('setMenus', data.menus)
+  // store.commit('setMenus', data.menus)
 
   // 跳转回原来页面
   let redirect = route.query.redirect

@@ -10,7 +10,8 @@ const testroutes: RouteRecordRaw[] = [
     name: 'defult',
     path: '/',
     meta: {
-      title: '家'
+      title: '家',
+      requireAuth: true
     },
     // meta的定义：简单来说就是路由元信息，也就是每个路由身上携带的信息。
     // requiresAuth: true // 添加该字段，表示进入这个路由是需要登录的
@@ -21,14 +22,17 @@ const testroutes: RouteRecordRaw[] = [
     name: 'home',
     path: '/home',
     meta: {
-      title: '首页'
+      title: '首页',
+      requireAuth: true
+
     },
     component: () => import('@/views/home.vue')
   },
   {
     name: 'update',
     meta: {
-      title: 'websocket'
+      title: 'websocket',
+      requireAuth: true
     },
     path: '/update',
 
@@ -36,6 +40,9 @@ const testroutes: RouteRecordRaw[] = [
   },
   {
     name: 'overview',
+    meta: {
+      requireAuth: true
+    },
     path: '/overview',
     component: () => import('@/views/update.vue')
   },
@@ -43,6 +50,7 @@ const testroutes: RouteRecordRaw[] = [
     name: 'datasource',
     path: '/datasource',
     meta: {
+      requireAuth: true,
       title: '高德地图'
     },
     component: () => import('@/views/datasource.vue')
@@ -51,6 +59,7 @@ const testroutes: RouteRecordRaw[] = [
     name: 'three',
     path: '/three',
     meta: {
+      requireAuth: true,
       title: 'three'
     },
     component: () => import('@/views/three.vue')
@@ -62,6 +71,7 @@ const productRoutes: RouteRecordRaw[] = [
     path: 'product',
     component: RouterView,
     meta: {
+      requireAuth: true,
       title: '商品'
     },
     children: [
@@ -70,6 +80,7 @@ const productRoutes: RouteRecordRaw[] = [
         name: 'product-list',
         component: () => import('@/views/product/list/index.vue'),
         meta: { // 自定义路由元数据
+          requireAuth: true,
           title: '商品列表'
         }
       },
@@ -78,6 +89,7 @@ const productRoutes: RouteRecordRaw[] = [
         name: 'product-add',
         component: () => import('@/views/product/add/index.vue'),
         meta: {
+          requireAuth: true,
           title: '添加商品'
         }
       },
@@ -86,6 +98,7 @@ const productRoutes: RouteRecordRaw[] = [
         name: 'product-attr',
         component: () => import('@/views/product/attr/index.vue'),
         meta: {
+          requireAuth: true,
           title: '商品规格'
         }
       },
@@ -94,6 +107,7 @@ const productRoutes: RouteRecordRaw[] = [
         name: 'product-classify',
         component: () => import('@/views/product/classify/index.vue'),
         meta: {
+          requireAuth: true,
           title: '商品分类'
         }
       },
@@ -102,6 +116,7 @@ const productRoutes: RouteRecordRaw[] = [
         name: 'product-reply',
         component: () => import('@/views/product/reply/index.vue'),
         meta: {
+          requireAuth: true,
           title: '商品评论'
         }
       }

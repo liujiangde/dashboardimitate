@@ -1,0 +1,13 @@
+.logout-exitAcc-comform{
+  .el-message-box__container{
+    position: relative !important;
+    display: flex !important;
+    justify-content: start !important;
+}
+.el-message-box__status.el-message-box-icon--warning{
+    display: contents !important;
+}
+.el-message-box__status+.el-message-box__message{
+    padding-left: 12px !important;
+}
+}

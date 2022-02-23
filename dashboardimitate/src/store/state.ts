@@ -8,17 +8,5 @@ export interface IUserInfo {
 export interface State {
   count: number,
   isSollapsed: boolean,
-  user: IUserInfo
+  user: (IUserInfo & { token: string }) | null
 }
-
-const state: State = {
-  count: 0,
-  isSollapsed: false,
-  user: {
-    id: 0,
-    account: '',
-    headPic: ''
-  }
-}
-
-export default state

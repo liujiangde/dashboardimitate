@@ -1,28 +1,21 @@
-import { projectkey } from './constpool'
-
-// eslint-disable-next-line no-unused-vars
-const getLocal = <T> (key: string): T => {
-  const value = localStorage.getItem(key) || ''
+export const getItem = <T>(key : string): T | null => {
+  // -----  提供范型    <T>                   T | null定义 返回值
+  const data = window.localStorage.getItem(key)
+  if (!data) return null
   try {
-    return JSON.parse(value as string)
+    return JSON.parse(data) as T
   } catch (error) {
-    return value as any
+    return null
   }
 }
 
-export const set = (key: string, value: unknown): void => {
-  localStorage.setItem(projectkey + key, JSON.stringify(value))
-}
-
-export const remove = (key: string): void => {
-  localStorage.removeItem(projectkey + key)
-}
-
-export const get = <T> (key: string): T => {
-  const json = localStorage.getItem(projectkey + key)
-  try {
-    return JSON.parse(json as string)
-  } catch {
-    return json as any
+export const setItem = (key:string, value: object | string | null) => {
+  if (typeof value === 'object') {
+    value = JSON.stringify(value)
   }
+  window.localStorage.setItem(key, value)
+}
+
+export const removeItem = (key: string) => {
+  window.localStorage.removeItem(key)
 }
