@@ -124,5 +124,25 @@ const productRoutes: RouteRecordRaw[] = [
   }
 ]
 
-const mainRoutes = [...testroutes, ...productRoutes]
+const permissionRoutes: RouteRecordRaw[] = [
+  {
+    path: 'system_admin',
+    component: RouterView,
+    meta: {
+      title: '权限管理',
+      requireAuth: true
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/permission/admin/index.vue'),
+        meta: {
+          requireAuth: true,
+          title: '管理员设置'
+        }
+      }
+    ]
+  }
+]
+const mainRoutes = [...testroutes, ...productRoutes, ...permissionRoutes]
 export default mainRoutes

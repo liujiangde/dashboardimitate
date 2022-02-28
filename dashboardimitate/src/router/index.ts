@@ -18,7 +18,6 @@ router.beforeEach(to => {
   // if (to.name === 'login' && expires > Date.now()) {
   //   return to.query.redirect?.toString() ?? '/'
   // }
-  debugger
 
   if (to.meta.requireAuth === true && !store.state.user) {
     return { path: 'login', query: { redirect: to.fullPath } }

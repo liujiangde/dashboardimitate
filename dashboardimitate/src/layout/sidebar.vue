@@ -89,6 +89,18 @@ const menuOptions = [
         key: 'product_reply'
       }
     ]
+  },
+  {
+    label: '权限管理',
+    key: 'system_power',
+    icon: renderIcon(WineIcon),
+    children: [
+      {
+        // label: '数据总览',
+        label: () => h(RouterLink, { to: '/system_admin/index' }, { default: () => '管理员设置' }),
+        key: 'system_admin'
+      }
+    ]
   }
 
 ]

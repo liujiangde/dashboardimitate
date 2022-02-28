@@ -45,16 +45,13 @@
 
 <script  lang= 'ts' setup>
 import { Albums, FolderOpenSharp } from '@vicons/ionicons5'
-import LogoutDialog from './dialog-logout/index.vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import type { Action } from 'element-plus'
-import { useMessage, useDialog } from 'naive-ui'
 import { removeItem } from '@/utils/storage.ts'
 import { computed, ref } from 'vue'
 import { USER } from '@/utils/constpool'
 import { useStore } from '@/store/index'
 import { useRouter, useRoute } from 'vue-router'
-import { login, logout } from '@/api/common'
+import { logout } from '@/api/common'
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
@@ -68,8 +65,8 @@ const exitAcc = async () => {
     '确认退出吗',
     '提示',
     {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
       type: 'warning',
       customClass: 'logout-exitAcc-comform'
     }
@@ -78,9 +75,10 @@ const exitAcc = async () => {
       await logout()
       ElMessage({
         type: 'success',
-        message: 'Delete completed'
+        message: '退出成功'
       })
       // 跳转回原来页面
+
       let redirect = route.query.redirect
       if (typeof redirect !== 'string') {
         redirect = '/login'
@@ -92,7 +90,7 @@ const exitAcc = async () => {
     .catch(() => {
       ElMessage({
         type: 'info',
-        message: 'Delete canceled'
+        message: '已取消'
       })
     })
 }
